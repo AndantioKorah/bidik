@@ -88,7 +88,7 @@ class C_Kinerja extends CI_Controller
               $config['upload_path'] = './assets/bukti_kegiatan'; 
             //   $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
               $config['allowed_types'] = '*';
-              $config['max_size'] = '5000'; // max_size in kb
+            //   $config['max_size'] = '5000'; // max_size in kb
             //   $config['file_name'] = $this->getUserName().'_'.$_FILES['file']['name'];
              
               //Load upload library
@@ -110,11 +110,12 @@ class C_Kinerja extends CI_Controller
                 $config['height'] = $data['image_height'] * 50 / 100;
                 $config['width'] = $data['image_width'] * 50 / 100;
               
-               } else {
-                $config['height'] =600;  
-                $config['width'] = 600;
+               } 
+            //    else {
+            //     $config['height'] =600;  
+            //     $config['width'] = 600;
                
-               }
+            //    }
                $config['master_dim'] = 'auto';
                $config['quality'] = "50%";
               
