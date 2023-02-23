@@ -29,6 +29,9 @@
                 
                 // $realisasi_kualitas = $lp['realisasi_target_kuantitas']/$lp['target_kuantitas'] * 100;
                 $progress = (floatval($lp['realisasi_target_kuantitas'])/floatval($lp['target_kuantitas'])) * 100;
+                if($progress > 100){
+                    $progress = 100;
+                }
                 $progress = formatTwoMaxDecimal($progress);
                 ?>
                     <tr onclick="openListKegiatan('<?=$lp['id']?>')">
