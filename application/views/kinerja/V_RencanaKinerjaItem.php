@@ -34,7 +34,7 @@
 
 <?php if($list_rencana_kinerja){ ?>
     <div class="col-12 tableFixHead">
-        <table class="table table-striped" id="table_rencana_kinerja">
+        <table class="table table-striped table-bordered" id="table_rencana_kinerja">
             <thead>
                 <th class="text-center table-success">No</th>
                 <th class="text-left table-success">Uraian Tugas</th>
