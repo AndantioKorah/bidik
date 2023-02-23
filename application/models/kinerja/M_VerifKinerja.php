@@ -522,7 +522,7 @@
                             ->join('m_user c', 'a.id_m_user_verif = c.id', 'left')
                             ->where('b.id', $id)
                             ->where('a.flag_active', 1)
-                            ->order_by('a.tanggal_verif', 'desc')
+                            ->order_by('a.created_date', 'desc')
                             ->get()->result_array();
         }
 

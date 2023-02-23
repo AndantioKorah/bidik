@@ -1,21 +1,5 @@
 <style>
     
-/* .modal-transparent */
-
-.modal-transparent {
- /* background: transparent;*/
-}
-.modal-transparent .modal-content {
- /* background: transparent;*/
-}
-.modal-backdrop.modal-backdrop-transparent {
-  background: #pink;
-}
-.modal-backdrop.modal-backdrop-transparent.in {
-  /*opacity: .9;
-  filter: alpha(opacity=90);*/
-}
-
 /* .modal-fullscreen */
 #myModalLabel {
   text-align: center;
@@ -250,9 +234,41 @@
         <div class="modal-content">
           
             <div class="modal-body">
-            <div id="textbox">
+           
+              <style>
+                .button_wrapper {
+                  width: 33%;
+                  float: left;
+              }
+
+              .button {
+                  display: inline-block;
+                  /* background-color: yellow; */
+              }
+              </style>
+               <div class="button_wrapper">
+            <div class="button">
+              
             <button onClick="rotateImgLeft()"   type="button" class="next btn btn-info alignleft" value=""> <i class="fa fa-undo" aria-hidden="true"></i> </button>
+            </div>
+            </div>
+            <div class="button_wrapper" style="text-align: center;">
+                <div class="button">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fa fa-window-close" aria-hidden="true"></i>
+                </button>
+                </div>
+            </div>
+            <div class="button_wrapper" style="text-align: right;">
+                <div class="button">
             <button onClick="rotateImgRight()"  type="button" class="next btn btn-info alignright" value=""> <i class="fa fa-redo" aria-hidden="true"></i> </button>
+
+                </div>
+            </div>
+
+            <div id="textbox">
+            <!-- <button onClick="rotateImgLeft()"   type="button" class="next btn btn-info alignleft" value=""> <i class="fa fa-undo" aria-hidden="true"></i> </button>
+            <button onClick="rotateImgRight()"  type="button" class="next btn btn-info alignright" value=""> <i class="fa fa-redo" aria-hidden="true"></i> </button> -->
            
             </div>
             <style>
@@ -260,7 +276,11 @@
                     float: left;
                 }
                 .alignright {
-                    float: right;
+                    text-align: right;
+                }
+                .aligncenter {
+                  text-align: center;
+                    display: inline-block;
                 }
             </style>
 
@@ -324,6 +344,12 @@ var span = document.getElementsByClassName("close")[0];
       }
       document.querySelector("#img").style.transform = `rotate(${rotation}deg)`;
     }
+
+    function closeModal() {
+      $('#edit-data').modal('hide');
+    }
+
+   
   </script>
 
 <script>
