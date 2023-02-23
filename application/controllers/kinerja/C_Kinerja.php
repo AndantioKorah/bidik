@@ -51,99 +51,97 @@ class C_Kinerja extends CI_Controller
         $this->kinerja->insert('t_rencana_kinerja', $data);
     }
 
-    public function multipleImageStore()
+    public function insertLaporanKegiatan()
   {
-    //   dd($_FILES);
-      $countfiles = count($_FILES['files']['name']);
     
-      $res = array('msg' => 'Data berhasil disimpan', 'success' => true);
-      $ress = 1;
-      if(implode($_FILES['files']['name']) == ""){
+    //   $countfiles = count($_FILES['files']['name']);
+    //   $res = array('msg' => 'Data berhasil disimpan', 'success' => true);
+    //   $ress = 1;
+    //   if(implode($_FILES['files']['name']) == ""){
           
-        $nama_file = '[""]';
-        $image = $nama_file;
-        $dataPost = $this->input->post();
-        $this->kinerja->createLaporanKegiatan($dataPost,$image);
-      } else {
-        for($i=0;$i<$countfiles;$i++){
+    //     $nama_file = '[""]';
+    //     $image = $nama_file;
+    //     $dataPost = $this->input->post();
+    //     $this->kinerja->createLaporanKegiatan($dataPost,$image);
+    //   } else {
+    //     for($i=0;$i<$countfiles;$i++){
          
-            if(!empty($_FILES['files']['name'][$i])){
+    //         if(!empty($_FILES['files']['name'][$i])){
       
-              // Define new $_FILES array - $_FILES['file']
-              $_FILES['file']['name'] = $this->getUserName().'_'.$_FILES['files']['name'][$i];
-              $_FILES['file']['type'] = $_FILES['files']['type'][$i];
-              $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
-              $_FILES['file']['error'] = $_FILES['files']['error'][$i];
-              $_FILES['file']['size'] = $_FILES['files']['size'][$i];
+    //           // Define new $_FILES array - $_FILES['file']
+    //           $_FILES['file']['name'] = $this->getUserName().'_'.$_FILES['files']['name'][$i];
+    //           $_FILES['file']['type'] = $_FILES['files']['type'][$i];
+    //           $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+    //           $_FILES['file']['error'] = $_FILES['files']['error'][$i];
+    //           $_FILES['file']['size'] = $_FILES['files']['size'][$i];
             
                 
-            //   if($_FILES['file']['size'] > 1048576){
-            //     $ress = 0;
-            //     $res = array('msg' => 'File tidak boleh lebih dari 1 MB', 'success' => false);
-            //     break;
-            //   }
+    //         //   if($_FILES['file']['size'] > 1048576){
+    //         //     $ress = 0;
+    //         //     $res = array('msg' => 'File tidak boleh lebih dari 1 MB', 'success' => false);
+    //         //     break;
+    //         //   }
            
-              // Set preference
-              $random_number = intval( "0" . rand(1,9) . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9) );
-              $config['upload_path'] = './assets/bukti_kegiatan'; 
-            //   $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
-              $config['allowed_types'] = '*';
-            //   $config['max_size'] = '5000'; // max_size in kb
-            //   $config['file_name'] = $this->getUserName().'_'.$_FILES['file']['name'];
+    //           // Set preference
+    //           $random_number = intval( "0" . rand(1,9) . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9) );
+    //           $config['upload_path'] = './assets/bukti_kegiatan'; 
+    //         //   $config['allowed_types'] = 'jpg|jpeg|png|gif|pdf';
+    //           $config['allowed_types'] = '*';
+    //         //   $config['max_size'] = '5000'; // max_size in kb
+    //         //   $config['file_name'] = $this->getUserName().'_'.$_FILES['file']['name'];
              
-              //Load upload library
-              $this->load->library('upload',$config); 
-            //   $res = array('msg' => 'something went wrong', 'success' => false);
-              // File upload
-              if($this->upload->do_upload('file')){
+    //           //Load upload library
+    //           $this->load->library('upload',$config); 
+    //         //   $res = array('msg' => 'something went wrong', 'success' => false);
+    //           // File upload
+    //           if($this->upload->do_upload('file')){
                
-               $data = $this->upload->data(); 
-               if($data['file_type'] == "image/png" || $data['file_type'] == "image/jpeg") {
-               $insert['name'] = $data['file_name'];
-               $config['image_library'] = 'gd2';
-               $config['source_image'] = './assets/bukti_kegiatan/'.$data["file_name"];
-               $config['create_thumb'] = FALSE;
-               $config['maintain_ratio'] = FALSE;
+    //            $data = $this->upload->data(); 
+    //            if($data['file_type'] == "image/png" || $data['file_type'] == "image/jpeg") {
+    //            $insert['name'] = $data['file_name'];
+    //            $config['image_library'] = 'gd2';
+    //            $config['source_image'] = './assets/bukti_kegiatan/'.$data["file_name"];
+    //            $config['create_thumb'] = FALSE;
+    //            $config['maintain_ratio'] = FALSE;
                
-               if($data['file_size'] > 1000) {
-                // $imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
-                $config['height'] = $data['image_height'] * 50 / 100;
-                $config['width'] = $data['image_width'] * 50 / 100;
+    //            if($data['file_size'] > 1000) {
+    //             // $imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
+    //             $config['height'] = $data['image_height'] * 50 / 100;
+    //             $config['width'] = $data['image_width'] * 50 / 100;
               
-               } 
-            //    else {
-            //     $config['height'] =600;  
-            //     $config['width'] = 600;
+    //            } 
+    //         //    else {
+    //         //     $config['height'] =600;  
+    //         //     $config['width'] = 600;
                
-            //    }
-               $config['master_dim'] = 'auto';
-               $config['quality'] = "50%";
+    //         //    }
+    //            $config['master_dim'] = 'auto';
+    //            $config['quality'] = "50%";
               
 
 
-               $this->load->library('image_lib');
-                        $this->image_lib->initialize($config);
-                        if (!$this->image_lib->resize()) {
-                            echo $this->image_lib->display_errors();
-                        }
-                $this->image_lib->clear();
-            }
+    //            $this->load->library('image_lib');
+    //                     $this->image_lib->initialize($config);
+    //                     if (!$this->image_lib->resize()) {
+    //                         echo $this->image_lib->display_errors();
+    //                     }
+    //             $this->image_lib->clear();
+    //         }
             
-              }
-            }
-            $nama_file[] = $data['file_name'];
-           }
-           if($ress == 1){
-            $image = json_encode($nama_file); 
-            $dataPost = $this->input->post();
-            $this->kinerja->createLaporanKegiatan($dataPost,$image);
-           }
-            
-           
-      }
+    //           }
+    //         }
+    //         $nama_file[] = $data['file_name'];
+    //        }
+    //        if($ress == 1){
+    //         $image = json_encode($nama_file); 
+    //         $dataPost = $this->input->post();
+    //         $this->kinerja->createLaporanKegiatan($dataPost,$image);
+    //        }   
+    //   }
       
-        echo json_encode($res);
-  
+    //     echo json_encode($res);
+    echo json_encode( $this->kinerja->insertLaporanKegiatan());
+    
   }
     
 

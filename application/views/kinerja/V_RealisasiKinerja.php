@@ -104,7 +104,7 @@
 
 
   <div class="form-group">
-    <label>Dokumen Bukti Kegiatan</label>
+    <label>Dokumen Bukti Kegiatan (Format PNG/JPG)</label>
     <input onclick="getDok()" class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" />
     <!-- <input  class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
 
@@ -254,7 +254,7 @@
         var ins = document.getElementById('image_file').files.length;
       
         $.ajax({  
-        url:"<?=base_url("kinerja/C_Kinerja/multipleImageStore")?>",
+        url:"<?=base_url("kinerja/C_Kinerja/insertLaporanKegiatan")?>",
         method:"POST",  
         data:form_data,  
         contentType: false,  
@@ -274,6 +274,7 @@
               } else {
                 errortoast(result.msg)
                 document.getElementById('btn_upload').disabled = false;
+                $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
                 return false;
               }
                 

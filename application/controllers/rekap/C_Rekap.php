@@ -1,10 +1,10 @@
 <?php
 
-// require 'vendor/autoload.php';
-require FCPATH.'vendor/autoload.php';
+require 'vendor/autoload.php';
+// require FCPATH.'vendor/autoload.php';
 // use PhpOffice\PhpSpreadSheet\Spreadsheet;
 // use PhpOffice\PhpSpreadSheet\IOFactory;
-require FCPATH.'vendor/autoload.php';
+// require FCPATH.'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
