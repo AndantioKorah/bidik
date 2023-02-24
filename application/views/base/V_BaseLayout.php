@@ -186,13 +186,13 @@
             background: #f2f2f2;
         }
 
-        @media screen and (width> 600px) {
+        /* @media screen and (width> 600px) {
         .tableFixHead tr>td:first-child + td {
         position: sticky;
         left: 0;
         min-width: 20em;
         }
-       }
+       } */
 
 
         /* FIXED LEFT COLOUM WITH HEADER */

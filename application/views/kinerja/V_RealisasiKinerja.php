@@ -65,8 +65,8 @@
     <form method="post" id="upload_form" enctype="multipart/form-data">
     <div class="form-group" >
     <label for="exampleFormControlInput1">Tanggal Kegiatan</label>
-    <input oncanges="" class="form-control datetimepickerthis" id="tanggal_kegiatan" name="tanggal_kegiatan" readonly value="<?= date('Y-m-d H:i:s') ;?>">
-  </div>
+    <input  class="form-control datetimepickerthis" id="tanggal_kegiatan" name="tanggal_kegiatan" readonly value="<?= date('Y-m-d H:i:s') ;?>">
+    </div>
     <div class="form-group">
          <label class="bmd-label-floating">Uraian Tugas </label>
          <select class="form-control select2-navy" name="tugas_jabatan" id="tugas_jabatan" onchange="getSatuan()" required>
@@ -242,10 +242,11 @@
         var bulan = d.getMonth() + 1;
         var tahun = d.getFullYear();
       
-      
-        if($('#tugas_jabatan').val() == "- Pilih Tugas Jabatan -")  
+        if($('#tugas_jabatan').val() == "- Pilih Uraian Tugas -")  
         {  
-        errortoast(" Pilih tugas jabatan terlebih dulu");  
+        errortoast("   Pilih uraian tugas  terlebih dulu");  
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
+        document.getElementById('btn_upload').disabled = false;
         return false
         }  
 
@@ -391,6 +392,8 @@
         }
 
         function readImage(file) {
+        document.getElementById('btn_upload').disabled = true;
+        $('#btn_upload').html('<i class="fas fa-spinner fa-spin"></i>')
         $('#uploadPreview').html('');
         var reader = new FileReader();
         var image  = new Image();
@@ -404,6 +407,8 @@
         n = file.name,
         s = ~~(file.size/1024) +'KB';
         $('#uploadPreview').append('<img src="' + this.src + '" class="thumb">');
+        document.getElementById('btn_upload').disabled = false;
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
         };
         // image.onerror= function() {
         // alert('Invalid file type: '+ file.type);

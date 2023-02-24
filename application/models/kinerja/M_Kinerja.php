@@ -306,6 +306,7 @@
 
         $data["realisasi_target_kuantitas"] = $datapost["edit_realisasi_target_kuantitas"];
         $data["deskripsi_kegiatan"] = $datapost["edit_deskripsi_kegiatan"];
+        $data["tanggal_kegiatan"] = $datapost["edit_tanggal_kegiatan"];
 
 
         $this->db->where('id', $id_kegiatan)
