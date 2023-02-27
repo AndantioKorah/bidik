@@ -123,7 +123,7 @@
 							<input class="input100" type="text" name="email" placeholder="Email addess...">
 							<span class="focus-input100"></span>
 						</div> -->
-
+						
 						<div class="wrap-input100 p-t-50" data-validate="Username is required">
 							<span class="label-input100">Username</span>
 							<input class="input100" autocomplete="off" type="text" name="username">

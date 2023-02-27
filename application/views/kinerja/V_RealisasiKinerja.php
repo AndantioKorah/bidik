@@ -105,9 +105,11 @@
 
   <div class="form-group">
     <label>Dokumen Bukti Kegiatan (Format PNG/JPG)</label>
-    <input onclick="getDok()" class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" />
+    <!-- <input onclick="getDok()" class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
     <!-- <input  class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
+    <input class="form-control my-image-field" type="file" id="image_file" name="files[]"  multiple="multiple" />
 
+    
     <br>
       <div id="uploadPreview"></div>
   </div>
@@ -415,16 +417,18 @@
         // };      
         };
         }
+        
         $("#image_file").change(function (e) {
         if(this.disabled) {
         return alert('File upload not supported!');
         }
-        var F = this.files;
-        if (F && F[0]) {
-        for (var i = 0; i < F.length; i++) {
-        readImage(F[i]);
-        }
-        }
+        // var F = this.files;
+        // if (F && F[0]) {
+        // for (var i = 0; i < F.length; i++) {
+          
+        // readImage(F[i]);
+        // }
+        // }
         });
 
       
@@ -453,4 +457,75 @@
     })
   }
 
+
+    const compressImage = async (file, { quality = 1, type = file.type }) => {
+      
+        // Get as image data
+        const imageBitmap = await createImageBitmap(file);
+
+        // Draw to canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = imageBitmap.width;
+        canvas.height = imageBitmap.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imageBitmap, 0, 0);
+
+        // Turn into Blob
+        const blob = await new Promise((resolve) =>
+            canvas.toBlob(resolve, type, quality)
+        );
+
+        // Turn Blob into File
+        return new File([blob], file.name, {
+            type: blob.type,
+        });
+    };
+
+    // Get the selected file from the file input
+    const input = document.querySelector('.my-image-field');
+    input.addEventListener('change', async (e) => {
+        // Get the files
+        // console.log(e.target)
+        const { files } = e.target;
+
+        // No files selected
+        if (!files.length) return;
+
+        // We'll store the files in this data transfer object
+        const dataTransfer = new DataTransfer();
+
+
+        // For every file in the files list
+        for (const file of files) {
+          // alert()
+            // We don't have to compress files that aren't images
+            if (!file.type.startsWith('image')) {
+                // Ignore this file, but do add it to our result
+                dataTransfer.items.add(file);
+                continue;
+            }
+
+            // We compress the file by 50%
+            console.log(file)
+            const compressedFile = await compressImage(file, {
+                quality: 0.5,
+                type: 'image/jpeg',
+            });
+            console.log(compressedFile)
+            // Save back the compressed file instead of the original file
+            dataTransfer.items.add(compressedFile);
+            // alert()
+        }
+
+        var F = files;
+        if (F && F[0]) {
+        for (var i = 0; i < F.length; i++) {
+          
+        readImage(F[i]);
+        }
+        }
+
+        // Set value of the file input to our new files list
+        e.target.files = dataTransfer.files;
+    });
 </script>

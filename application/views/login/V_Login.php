@@ -91,6 +91,7 @@
       <span style="font-weight: bold; font-size: 18px; color: black">BKPSDM Kota Manado</span>
       <br>
       </center>
+      ffw
       <form action="<?=base_url('login/C_Login/authenticateAdmin')?>" method="post">
         <div class="input-group mb-3 mt-3">
           <input type="text" class="form-control" onclick="hideError()" name="username" placeholder="Username">

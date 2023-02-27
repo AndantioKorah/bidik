@@ -202,7 +202,7 @@
                             <button href="#edit_realisasi_kinerja" data-toggle="tooltip" class="btn btn-sm btn-navy" data-placement="top" title="Edit" 
                              onclick="openModalEditRealisasiKinerja('<?=$lp['id']?>')"><i class="fa fa-edit"></i> </button>
                                  </span>  
-                            <button onclick="deleteKegiatan('<?=$lp['id']?>','<?=$lp['tanggal_kegiatan']?>')" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash" ></i></button>
+                            <button onclick="deleteKegiatan('<?=$lp['id']?>','<?=$lp['tanggal_kegiatan']?>')" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash" ></i></button>
                             <?php } ?>
                         </td>
                         
@@ -383,7 +383,14 @@ var span = document.getElementsByClassName("close")[0];
 
             var bulan = d.getMonth() + 1;
             var tahun = d.getFullYear();
+
+            // $('[data-toggle="tooltip"]').tooltip({
+            //     trigger : 'hover'
+            // })
+            // $('[data-toggle="tooltip"]').tooltip('hide');
+          
             if(confirm('Apakah Anda yakin ingin menghapus data?')){
+   
                 $.ajax({
                     url: '<?=base_url("kinerja/C_Kinerja/deleteKegiatan/")?>'+id,
                     method: 'post',
@@ -391,6 +398,10 @@ var span = document.getElementsByClassName("close")[0];
                     success: function(){
                         successtoast('Data sudah terhapus')
                         loadListKegiatan(tahun,bulan)
+                        $('[data-toggle="tooltip"]').tooltip({
+                trigger : 'hover'
+            })
+            $('[data-toggle="tooltip"]').tooltip('hide');
                     }, error: function(e){
                         errortoast('Terjadi Kesalahan')
                     }

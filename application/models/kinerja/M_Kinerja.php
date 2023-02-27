@@ -12,6 +12,7 @@
         }
 
         public function insertLaporanKegiatan(){
+            // dd($_FILES);
         $countfiles = count($_FILES['files']['name']);
         $res = array('msg' => 'Data berhasil disimpan', 'success' => true);
         $ress = 1;
@@ -72,30 +73,32 @@
                $config['create_thumb'] = FALSE;
                $config['maintain_ratio'] = FALSE;
                
-               if($data['file_size'] > 1000) {
+            //    kompress
+            //    if($data['file_size'] > 1000) {
                
-                // $imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
-                $tinggi = $data['image_height'] * 50 / 100;
-                $lebar  = $data['image_width'] * 50 / 100;
-                $config['height'] = round($tinggi);
-                $config['width'] = round($lebar);
+            //     // $imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
+            //     $tinggi = $data['image_height'] * 50 / 100;
+            //     $lebar  = $data['image_width'] * 50 / 100;
+            //     $config['height'] = round($tinggi);
+            //     $config['width'] = round($lebar);
               
-               } 
-            //    else {
-            //     $config['height'] =600;  
-            //     $config['width'] = 600;
+            //    } 
+            // //    else {
+            // //     $config['height'] =600;  
+            // //     $config['width'] = 600;
                
-            //    }
-               $config['master_dim'] = 'auto';
-               $config['quality'] = "50%";
+            // //    }
+            //    $config['master_dim'] = 'auto';
+            //    $config['quality'] = "50%";
 
 
-               $this->load->library('image_lib');
-                        $this->image_lib->initialize($config);
-                        if (!$this->image_lib->resize()) {
-                            echo $this->image_lib->display_errors();
-                        }
-                $this->image_lib->clear();
+            //    $this->load->library('image_lib');
+            //             $this->image_lib->initialize($config);
+            //             if (!$this->image_lib->resize()) {
+            //                 echo $this->image_lib->display_errors();
+            //             }
+            //     $this->image_lib->clear();
+            // tutup kompress
             }
             
               }
