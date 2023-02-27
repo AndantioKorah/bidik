@@ -394,8 +394,8 @@
         }
 
         function readImage(file) {
-        // document.getElementById('btn_upload').disabled = true;
-        // $('#btn_upload').html('<i class="fas fa-spinner fa-spin"></i>')
+        document.getElementById('btn_upload').disabled = true;
+        $('#btn_upload').html('<i class="fas fa-spinner fa-spin"></i>')
         $('#uploadPreview').html('');
         var reader = new FileReader();
         var image  = new Image();
@@ -412,6 +412,8 @@
         document.getElementById('btn_upload').disabled = false;
         $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
         };
+        document.getElementById('btn_upload').disabled = false;
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
         // image.onerror= function() {
         // alert('Invalid file type: '+ file.type);
         // };      
