@@ -107,7 +107,7 @@
     <label>Dokumen Bukti Kegiatan (Format PNG/JPG)</label>
     <!-- <input onclick="getDok()" class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
     <!-- <input  class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
-    <input class="form-control my-image-field" type="file" id="image_file" name="files[]"  multiple="multiple" />
+    <input onclick="getDok()"  class="form-control my-image-field" type="file" id="image_file" name="files[]"  multiple="multiple" />
 
     
     <br>
@@ -394,8 +394,8 @@
         }
 
         function readImage(file) {
-        document.getElementById('btn_upload').disabled = true;
-        $('#btn_upload').html('<i class="fas fa-spinner fa-spin"></i>')
+        // document.getElementById('btn_upload').disabled = true;
+        // $('#btn_upload').html('<i class="fas fa-spinner fa-spin"></i>')
         $('#uploadPreview').html('');
         var reader = new FileReader();
         var image  = new Image();
@@ -417,6 +417,7 @@
         // };      
         };
         }
+        
         
         $("#image_file").change(function (e) {
         if(this.disabled) {
