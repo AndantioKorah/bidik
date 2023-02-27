@@ -66,14 +66,14 @@
               if($this->upload->do_upload('file')){
                
                $data = $this->upload->data(); 
-               if($data['file_type'] == "image/png" || $data['file_type'] == "image/jpeg") {
-               $insert['name'] = $data['file_name'];
-               $config['image_library'] = 'gd2';
-               $config['source_image'] = './assets/bukti_kegiatan/'.$data["file_name"];
-               $config['create_thumb'] = FALSE;
-               $config['maintain_ratio'] = FALSE;
+                 //    kompress
+            //    if($data['file_type'] == "image/png" || $data['file_type'] == "image/jpeg") {
+            //    $insert['name'] = $data['file_name'];
+            //    $config['image_library'] = 'gd2';
+            //    $config['source_image'] = './assets/bukti_kegiatan/'.$data["file_name"];
+            //    $config['create_thumb'] = FALSE;
+            //    $config['maintain_ratio'] = FALSE;
                
-            //    kompress
             //    if($data['file_size'] > 1000) {
                
             //     // $imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
@@ -99,7 +99,7 @@
             //             }
             //     $this->image_lib->clear();
             // tutup kompress
-            }
+            // }
             
               }
             }
