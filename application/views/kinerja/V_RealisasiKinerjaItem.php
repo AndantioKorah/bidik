@@ -167,7 +167,7 @@
                             
                             $file = json_decode($lp['bukti_kegiatan']);
                             $nodok = 1;
-                            
+                            if($file) {
                             foreach($file as $file_name)
                                 {
                                   $data = $file_name;    
@@ -188,6 +188,9 @@
                                     }
                                    $nodok++;
                                 } 
+                              } else {
+                                echo "<a class='dropdown-item' >Tidak Ada File</a>";
+                              }
                             ?>
    
                         </div>
