@@ -100,7 +100,7 @@
                 // if($bobot > 30){
                 //     $bobot = 30;
                 // }
-                $kinerja = countNilaiSkp($rencana_kinerja); 
+                $kinerja = countNilaiSkp($rencana_kinerja);
             ?>
             <tr>
                 <td style="padding: 5px; text-align: right;" class="text-right;" colspan=7>CAPAIAN SASARAN KINERJA RATA-RATA</td>
