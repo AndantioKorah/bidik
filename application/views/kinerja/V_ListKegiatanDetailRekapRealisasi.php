@@ -129,6 +129,7 @@
                             <?php 
                                 $file = json_decode($rs['bukti_kegiatan']);
                                 $nomor = 1;
+                                if($file) {
                                 foreach($file as $file_name)
                                     {
                                          $data = $file_name;    
@@ -141,6 +142,9 @@
                                         }
                                     $nomor++;
                                     } 
+                                  } else {
+                                    echo "<a class='dropdown-item' >Tidak Ada File</a>";
+                                  }
                                 ?>
     
                             </div>
