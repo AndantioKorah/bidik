@@ -1,6 +1,6 @@
 <div class="card card-default">
     <div class="card-header">
-        <h4>Verifikasi Dokumen Pendukung Absensi</h4>
+        <h4>Verifikasi Dokumen Pendukung Presensi</h4>
     </div>
     <div class="card-body">
         <form id="form_search_verif_dokumen">
