@@ -8,6 +8,7 @@ class C_Kinerja extends CI_Controller
         $this->load->model('general/M_General', 'general');
         $this->load->model('master/M_Master', 'master');
         $this->load->model('kinerja/M_Kinerja', 'kinerja');
+        $this->load->model('user/M_User', 'user');
         $this->load->model('kinerja/M_VerifKinerja', 'verifkinerja');
         $this->load->helper('url_helper');
         $this->load->helper('form');
@@ -458,7 +459,22 @@ class C_Kinerja extends CI_Controller
         $data['result'] = $this->kinerja->countPaguTpp($this->input->post());
         $this->load->view('kinerja/V_PaguTppData', $data);
     }
-  
+
+    public function disker(){
+        $data['unitkerja'] = $this->master->getAllUnitKerja();
+        $data['disker'] = $this->general->getAll('m_disiplin_kerja');
+        render('kinerja/V_Disker', '', '', $data);
+    }
+
+    public function getListPegawaiByUnitKerja($id_unitkerja){
+        echo json_encode($this->user->getListPegawaiByUnitKerja($id_unitkerja));
+    }
+    
+    public function loadModalTambahDataDisker(){
+        $data['unitkerja'] = $this->master->getAllUnitKerja();
+        $data['disker'] = $this->general->getAll('m_disiplin_kerja');
+        $this->load->view('kinerja/V_ModalTambahDataDisker', $data);
+    }
 
     
 }

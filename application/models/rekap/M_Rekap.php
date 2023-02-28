@@ -854,94 +854,96 @@
         }
       
         foreach($tempresult as $tr){
-            $lp[$tr['nip']] = $tr;
-            $lp[$tr['nip']]['rekap']['tmk1'] = 0;
-            $lp[$tr['nip']]['rekap']['tmk2'] = 0;
-            $lp[$tr['nip']]['rekap']['tmk3'] = 0;
-            $lp[$tr['nip']]['rekap']['pksw1'] = 0;
-            $lp[$tr['nip']]['rekap']['pksw2'] = 0;
-            $lp[$tr['nip']]['rekap']['pksw3'] = 0;
-            $lp[$tr['nip']]['rekap']['TK'] = 0;
-            $lp[$tr['nip']]['rekap']['jhk'] = 0;
-            $lp[$tr['nip']]['rekap']['hadir'] = 0;
-            // $lp[$tr['nip']]['rekap']['hadir_mk'] = 0;
-            if($data['disiplin_kerja']){
-                foreach($data['disiplin_kerja'] as $dk){
-                    $lp[$tr['nip']]['rekap'][$dk['keterangan']] = 0;
+            if(isset($lp[$tr['nip']])){
+                $lp[$tr['nip']] = $tr;
+                $lp[$tr['nip']]['rekap']['tmk1'] = 0;
+                $lp[$tr['nip']]['rekap']['tmk2'] = 0;
+                $lp[$tr['nip']]['rekap']['tmk3'] = 0;
+                $lp[$tr['nip']]['rekap']['pksw1'] = 0;
+                $lp[$tr['nip']]['rekap']['pksw2'] = 0;
+                $lp[$tr['nip']]['rekap']['pksw3'] = 0;
+                $lp[$tr['nip']]['rekap']['TK'] = 0;
+                $lp[$tr['nip']]['rekap']['jhk'] = 0;
+                $lp[$tr['nip']]['rekap']['hadir'] = 0;
+                // $lp[$tr['nip']]['rekap']['hadir_mk'] = 0;
+                if($data['disiplin_kerja']){
+                    foreach($data['disiplin_kerja'] as $dk){
+                        $lp[$tr['nip']]['rekap'][$dk['keterangan']] = 0;
+                    }
                 }
-            }
-            foreach($list_hari as $l){
-                
-                if($format_hari[$l]['jam_masuk'] != '' && !isset($hari_libur[$l])){ //bukan hari libur atau hari sabtu / minggu
+                foreach($list_hari as $l){
                     
-                    $lp[$tr['nip']]['rekap']['jhk']++;
-                  
-            // Surat Tugas
-                    if(isset($dokpen[$tr['nip']][$l])){  
-                        if($dokpen[$tr['nip']][$l] == "TL"){
-                            if($dokpen[$tr['nip']]["ket_".$l] == "Tugas Luar Pagi"){
-                                $lp[$tr['nip']]['absen'][$l]['jam_masuk'] = $dokpen[$tr['nip']][$l];
-                                $lp[$tr['nip']]['rekap'][$dokpen[$tr['nip']][$l]]++;
-                            } else if($dokpen[$tr['nip']]["ket_".$l] == "Tugas Luar Sore"){
-                                $lp[$tr['nip']]['absen'][$l]['jam_pulang'] = $dokpen[$tr['nip']][$l];
+                    if($format_hari[$l]['jam_masuk'] != '' && !isset($hari_libur[$l])){ //bukan hari libur atau hari sabtu / minggu
+                        
+                        $lp[$tr['nip']]['rekap']['jhk']++;
+                    
+                // Surat Tugas
+                        if(isset($dokpen[$tr['nip']][$l])){  
+                            if($dokpen[$tr['nip']][$l] == "TL"){
+                                if($dokpen[$tr['nip']]["ket_".$l] == "Tugas Luar Pagi"){
+                                    $lp[$tr['nip']]['absen'][$l]['jam_masuk'] = $dokpen[$tr['nip']][$l];
+                                    $lp[$tr['nip']]['rekap'][$dokpen[$tr['nip']][$l]]++;
+                                } else if($dokpen[$tr['nip']]["ket_".$l] == "Tugas Luar Sore"){
+                                    $lp[$tr['nip']]['absen'][$l]['jam_pulang'] = $dokpen[$tr['nip']][$l];
+                                    $lp[$tr['nip']]['rekap'][$dokpen[$tr['nip']][$l]]++;
+                                } else {
+                                    $lp[$tr['nip']]['absen'][$l]['ket'] = "A";
+                                } 
+                                
+                            } 
+                        }
+                // Tutup Surat Tugas
+                        
+
+                    
+                        if($lp[$tr['nip']]['absen'][$l]['ket'] == 'A'){
+                            
+                            if(isset($dokpen[$tr['nip']][$l])){  
+                                $lp[$tr['nip']]['absen'][$l]['ket'] = $dokpen[$tr['nip']][$l];
                                 $lp[$tr['nip']]['rekap'][$dokpen[$tr['nip']][$l]]++;
                             } else {
-                                $lp[$tr['nip']]['absen'][$l]['ket'] = "A";
-                            } 
-                            
-                        } 
-                    }
-            // Tutup Surat Tugas
-                    
-
-                   
-                    if($lp[$tr['nip']]['absen'][$l]['ket'] == 'A'){
-                        
-                        if(isset($dokpen[$tr['nip']][$l])){  
-                            $lp[$tr['nip']]['absen'][$l]['ket'] = $dokpen[$tr['nip']][$l];
-                            $lp[$tr['nip']]['rekap'][$dokpen[$tr['nip']][$l]]++;
+                                $lp[$tr['nip']]['rekap']['TK']++;
+                            }
                         } else {
-                            $lp[$tr['nip']]['rekap']['TK']++;
-                        }
-                    } else {
-                        $lp[$tr['nip']]['rekap']['hadir']++;
-                       
-                        $diff_masuk = strtotime($lp[$tr['nip']]['absen'][$l]['jam_masuk']) - strtotime($format_hari[$l]['jam_masuk'].'+ 59 seconds');
-                        if($diff_masuk > 0){
-                            $ket_masuk = floatval($diff_masuk) / 1800;
-                            if($ket_masuk <= 1){
-                                $lp[$tr['nip']]['absen'][$l]['ket_masuk'] = 'tmk1';
-                                $lp[$tr['nip']]['rekap']['tmk1']++;
-                            } else if($ket_masuk > 1 && $ket_masuk <= 2){
-                                $lp[$tr['nip']]['absen'][$l]['ket_masuk'] = 'tmk2';
-                                $lp[$tr['nip']]['rekap']['tmk2']++;
-                            } else if($ket_masuk > 2) {
-                                $lp[$tr['nip']]['absen'][$l]['ket_masuk'] = 'tmk3';
-                                $lp[$tr['nip']]['rekap']['tmk3']++;
-                            }
-                        }
+                            $lp[$tr['nip']]['rekap']['hadir']++;
                         
-                     
-                        $diff_keluar = strtotime($format_hari[$l]['jam_pulang']) - strtotime($lp[$tr['nip']]['absen'][$l]['jam_pulang']);
-                        if($diff_keluar > 0){
-                            $ket_pulang = floatval($diff_keluar) / 1800;
-                            if($ket_pulang <= 1){
-                                $lp[$tr['nip']]['absen'][$l]['ket_pulang'] = 'pksw1';
-                                $lp[$tr['nip']]['rekap']['pksw1']++;
-                            } else if($ket_pulang > 1 && $ket_pulang <= 2){
-                                $lp[$tr['nip']]['absen'][$l]['ket_pulang'] = 'pksw2';
-                                $lp[$tr['nip']]['rekap']['pksw2']++;
-                            } else if($ket_pulang > 2) {
-                                if($lp[$tr['nip']]['absen'][$l]['jam_pulang'] != "TL"){
-                                    $lp[$tr['nip']]['absen'][$l]['ket_pulang'] = 'pksw3';
-                                    $lp[$tr['nip']]['rekap']['pksw3']++;
+                            $diff_masuk = strtotime($lp[$tr['nip']]['absen'][$l]['jam_masuk']) - strtotime($format_hari[$l]['jam_masuk'].'+ 59 seconds');
+                            if($diff_masuk > 0){
+                                $ket_masuk = floatval($diff_masuk) / 1800;
+                                if($ket_masuk <= 1){
+                                    $lp[$tr['nip']]['absen'][$l]['ket_masuk'] = 'tmk1';
+                                    $lp[$tr['nip']]['rekap']['tmk1']++;
+                                } else if($ket_masuk > 1 && $ket_masuk <= 2){
+                                    $lp[$tr['nip']]['absen'][$l]['ket_masuk'] = 'tmk2';
+                                    $lp[$tr['nip']]['rekap']['tmk2']++;
+                                } else if($ket_masuk > 2) {
+                                    $lp[$tr['nip']]['absen'][$l]['ket_masuk'] = 'tmk3';
+                                    $lp[$tr['nip']]['rekap']['tmk3']++;
                                 }
-                               
                             }
-                        }  
-                    }   
-                }
-            } 
+                            
+                        
+                            $diff_keluar = strtotime($format_hari[$l]['jam_pulang']) - strtotime($lp[$tr['nip']]['absen'][$l]['jam_pulang']);
+                            if($diff_keluar > 0){
+                                $ket_pulang = floatval($diff_keluar) / 1800;
+                                if($ket_pulang <= 1){
+                                    $lp[$tr['nip']]['absen'][$l]['ket_pulang'] = 'pksw1';
+                                    $lp[$tr['nip']]['rekap']['pksw1']++;
+                                } else if($ket_pulang > 1 && $ket_pulang <= 2){
+                                    $lp[$tr['nip']]['absen'][$l]['ket_pulang'] = 'pksw2';
+                                    $lp[$tr['nip']]['rekap']['pksw2']++;
+                                } else if($ket_pulang > 2) {
+                                    if($lp[$tr['nip']]['absen'][$l]['jam_pulang'] != "TL"){
+                                        $lp[$tr['nip']]['absen'][$l]['ket_pulang'] = 'pksw3';
+                                        $lp[$tr['nip']]['rekap']['pksw3']++;
+                                    }
+                                
+                                }
+                            }  
+                        }   
+                    }
+                } 
+            }
         }
       
         $data['result'] = $lp;

@@ -43,12 +43,13 @@
                     <td>
                         <?php if($status == 2 || $status == 3){ ?>
                             <span><strong><?=$r['keterangan_verif']?></strong></span><br>
-                            <span style="font-size: 14px;"><?='(oleh '.$r['nama_verif'].' pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
+                            <!-- <span style="font-size: 14px;"><?='(oleh '.$r['nama_verif'].' pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span> -->
+                            <span style="font-size: 14px;"><?='pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
                         <?php } else if($status == 1) { ?> 
                             <input class="form-control" id="ket_verif_<?=$r['id']?>" />
                         <?php } else if($status == 4){ ?>
                             <input class="form-control" id="ket_verif_<?=$r['id']?>" />
-                            <span style="font-size: 14px;"><?='(DIBATALKAN oleh '.$r['nama_verif'].' pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
+                            <span style="font-size: 14px;"><?='(DIBATALKAN pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
                         <?php } ?>
                     </td>
                     <td class="text-center">

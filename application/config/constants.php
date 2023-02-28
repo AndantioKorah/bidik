@@ -149,7 +149,7 @@ define('LIST_UNIT_KERJA_MASTER_KECAMATAN', [5001000, 5002000, 5003000, 5004000, 
 define('LIST_UNIT_KERJA_KECAMATAN', [50010001, 50020001, 50030001, 50040001, 50050001, 50060001, 50070001, 50080001, 50090001, 50100011, 50110011]);
 define('LIST_ROLE_KHUSUS', ['lurah', 'camat']);
 define('ID_BIDANG_PEKIN', 166);
-define('URL_MENU_PEKIN', ['rekapitulasi/absensi', 'dokumen-pendukung-absensi/verifikasi']);
+define('URL_MENU_PEKIN', ['rekapitulasi/absensi', 'dokumen-pendukung-absensi/verifikasi', 'dokumen-pendukung-absensi/disker']);
 define('ID_UNITKERJA_DIKBUD', 3010000);
 define('DOKUMEN_PENDUKUNG_DISIPLIN_KERJA', 'assets/dokumen_pendukung_disiplin_kerja');
 
