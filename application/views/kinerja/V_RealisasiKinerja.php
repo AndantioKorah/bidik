@@ -65,8 +65,8 @@
     <form method="post" id="upload_form" enctype="multipart/form-data">
     <div class="form-group" >
     <label for="exampleFormControlInput1">Tanggal Kegiatan</label>
-    <input oncanges="" class="form-control datetimepickerthis" id="tanggal_kegiatan" name="tanggal_kegiatan" readonly value="<?= date('Y-m-d H:i:s') ;?>">
-  </div>
+    <input  class="form-control datetimepickerthis" id="tanggal_kegiatan" name="tanggal_kegiatan" readonly value="<?= date('Y-m-d H:i:s') ;?>">
+    </div>
     <div class="form-group">
          <label class="bmd-label-floating">Uraian Tugas </label>
          <select class="form-control select2-navy" name="tugas_jabatan" id="tugas_jabatan" onchange="getSatuan()" required>
@@ -104,10 +104,12 @@
 
 
   <div class="form-group">
-    <label>Dokumen Bukti Kegiatan</label>
-    <input onclick="getDok()" class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" />
+    <label>Dokumen Bukti Kegiatan (Format PNG/JPG)</label>
+    <!-- <input onclick="getDok()" class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
     <!-- <input  class="form-control" type="file" id="image_file" name="files[]" multiple="multiple" /> -->
+    <input onclick="getDok()"  class="form-control my-image-field" type="file" id="image_file" name="files[]"  multiple="multiple" />
 
+    
     <br>
       <div id="uploadPreview"></div>
   </div>
@@ -242,10 +244,11 @@
         var bulan = d.getMonth() + 1;
         var tahun = d.getFullYear();
       
-      
-        if($('#tugas_jabatan').val() == "- Pilih Tugas Jabatan -")  
+        if($('#tugas_jabatan').val() == "- Pilih Uraian Tugas -")  
         {  
-        errortoast(" Pilih tugas jabatan terlebih dulu");  
+        errortoast("   Pilih uraian tugas  terlebih dulu");  
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
+        document.getElementById('btn_upload').disabled = false;
         return false
         }  
 
@@ -254,7 +257,7 @@
         var ins = document.getElementById('image_file').files.length;
       
         $.ajax({  
-        url:"<?=base_url("kinerja/C_Kinerja/multipleImageStore")?>",
+        url:"<?=base_url("kinerja/C_Kinerja/insertLaporanKegiatan")?>",
         method:"POST",  
         data:form_data,  
         contentType: false,  
@@ -274,6 +277,7 @@
               } else {
                 errortoast(result.msg)
                 document.getElementById('btn_upload').disabled = false;
+                $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
                 return false;
               }
                 
@@ -390,6 +394,8 @@
         }
 
         function readImage(file) {
+        document.getElementById('btn_upload').disabled = true;
+        $('#btn_upload').html('<i class="fas fa-spinner fa-spin"></i>')
         $('#uploadPreview').html('');
         var reader = new FileReader();
         var image  = new Image();
@@ -403,22 +409,29 @@
         n = file.name,
         s = ~~(file.size/1024) +'KB';
         $('#uploadPreview').append('<img src="' + this.src + '" class="thumb">');
+        document.getElementById('btn_upload').disabled = false;
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
         };
+        document.getElementById('btn_upload').disabled = false;
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
         // image.onerror= function() {
         // alert('Invalid file type: '+ file.type);
         // };      
         };
         }
+        
+        
         $("#image_file").change(function (e) {
         if(this.disabled) {
         return alert('File upload not supported!');
         }
-        var F = this.files;
-        if (F && F[0]) {
-        for (var i = 0; i < F.length; i++) {
-        readImage(F[i]);
-        }
-        }
+        // var F = this.files;
+        // if (F && F[0]) {
+        // for (var i = 0; i < F.length; i++) {
+          
+        // readImage(F[i]);
+        // }
+        // }
         });
 
       
@@ -447,4 +460,75 @@
     })
   }
 
+
+    const compressImage = async (file, { quality = 1, type = file.type }) => {
+      
+        // Get as image data
+        const imageBitmap = await createImageBitmap(file);
+
+        // Draw to canvas
+        const canvas = document.createElement('canvas');
+        canvas.width = imageBitmap.width;
+        canvas.height = imageBitmap.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imageBitmap, 0, 0);
+
+        // Turn into Blob
+        const blob = await new Promise((resolve) =>
+            canvas.toBlob(resolve, type, quality)
+        );
+
+        // Turn Blob into File
+        return new File([blob], file.name, {
+            type: blob.type,
+        });
+    };
+
+    // Get the selected file from the file input
+    const input = document.querySelector('.my-image-field');
+    input.addEventListener('change', async (e) => {
+        // Get the files
+        // console.log(e.target)
+        const { files } = e.target;
+
+        // No files selected
+        if (!files.length) return;
+
+        // We'll store the files in this data transfer object
+        const dataTransfer = new DataTransfer();
+
+
+        // For every file in the files list
+        for (const file of files) {
+          // alert()
+            // We don't have to compress files that aren't images
+            if (!file.type.startsWith('image')) {
+                // Ignore this file, but do add it to our result
+                dataTransfer.items.add(file);
+                continue;
+            }
+
+            // We compress the file by 50%
+            console.log(file)
+            const compressedFile = await compressImage(file, {
+                quality: 0.5,
+                type: 'image/jpeg',
+            });
+            console.log(compressedFile)
+            // Save back the compressed file instead of the original file
+            dataTransfer.items.add(compressedFile);
+            // alert()
+        }
+
+        var F = files;
+        if (F && F[0]) {
+        for (var i = 0; i < F.length; i++) {
+          
+        readImage(F[i]);
+        }
+        }
+
+        // Set value of the file input to our new files list
+        e.target.files = dataTransfer.files;
+    });
 </script>

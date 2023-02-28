@@ -1,21 +1,5 @@
 <style>
     
-/* .modal-transparent */
-
-.modal-transparent {
- /* background: transparent;*/
-}
-.modal-transparent .modal-content {
- /* background: transparent;*/
-}
-.modal-backdrop.modal-backdrop-transparent {
-  background: #pink;
-}
-.modal-backdrop.modal-backdrop-transparent.in {
-  /*opacity: .9;
-  filter: alpha(opacity=90);*/
-}
-
 /* .modal-fullscreen */
 #myModalLabel {
   text-align: center;
@@ -145,7 +129,7 @@
         <div id="" class="row">
         <?php if($list_kegiatan){ ?>
         <div class="col-12 tableFixHead">
-        <table class="table table-striped" id="table_realisasi_kinerja" width="100%">
+        <table  class="table table-striped table-bordered" id="table_realisasi_kinerja" width="100%">
             <thead>
                 <th class="text-center table-success">No</th>
                 <th class="text-left table-success">Uraian Tugas</th>
@@ -218,7 +202,7 @@
                             <button href="#edit_realisasi_kinerja" data-toggle="tooltip" class="btn btn-sm btn-navy" data-placement="top" title="Edit" 
                              onclick="openModalEditRealisasiKinerja('<?=$lp['id']?>')"><i class="fa fa-edit"></i> </button>
                                  </span>  
-                            <button onclick="deleteKegiatan('<?=$lp['id']?>','<?=$lp['tanggal_kegiatan']?>')" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-trash" ></i></button>
+                            <button onclick="deleteKegiatan('<?=$lp['id']?>','<?=$lp['tanggal_kegiatan']?>')" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash" ></i></button>
                             <?php } ?>
                         </td>
                         
@@ -250,9 +234,41 @@
         <div class="modal-content">
           
             <div class="modal-body">
-            <div id="textbox">
+           
+              <style>
+                .button_wrapper {
+                  width: 33%;
+                  float: left;
+              }
+
+              .button {
+                  display: inline-block;
+                  /* background-color: yellow; */
+              }
+              </style>
+               <div class="button_wrapper">
+            <div class="button">
+              
             <button onClick="rotateImgLeft()"   type="button" class="next btn btn-info alignleft" value=""> <i class="fa fa-undo" aria-hidden="true"></i> </button>
+            </div>
+            </div>
+            <div class="button_wrapper" style="text-align: center;">
+                <div class="button">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fa fa-window-close" aria-hidden="true"></i>
+                </button>
+                </div>
+            </div>
+            <div class="button_wrapper" style="text-align: right;">
+                <div class="button">
             <button onClick="rotateImgRight()"  type="button" class="next btn btn-info alignright" value=""> <i class="fa fa-redo" aria-hidden="true"></i> </button>
+
+                </div>
+            </div>
+
+            <div id="textbox">
+            <!-- <button onClick="rotateImgLeft()"   type="button" class="next btn btn-info alignleft" value=""> <i class="fa fa-undo" aria-hidden="true"></i> </button>
+            <button onClick="rotateImgRight()"  type="button" class="next btn btn-info alignright" value=""> <i class="fa fa-redo" aria-hidden="true"></i> </button> -->
            
             </div>
             <style>
@@ -260,7 +276,11 @@
                     float: left;
                 }
                 .alignright {
-                    float: right;
+                    text-align: right;
+                }
+                .aligncenter {
+                  text-align: center;
+                    display: inline-block;
                 }
             </style>
 
@@ -324,6 +344,12 @@ var span = document.getElementsByClassName("close")[0];
       }
       document.querySelector("#img").style.transform = `rotate(${rotation}deg)`;
     }
+
+    function closeModal() {
+      $('#edit-data').modal('hide');
+    }
+
+   
   </script>
 
 <script>
@@ -357,7 +383,14 @@ var span = document.getElementsByClassName("close")[0];
 
             var bulan = d.getMonth() + 1;
             var tahun = d.getFullYear();
+
+            // $('[data-toggle="tooltip"]').tooltip({
+            //     trigger : 'hover'
+            // })
+            // $('[data-toggle="tooltip"]').tooltip('hide');
+          
             if(confirm('Apakah Anda yakin ingin menghapus data?')){
+   
                 $.ajax({
                     url: '<?=base_url("kinerja/C_Kinerja/deleteKegiatan/")?>'+id,
                     method: 'post',
@@ -365,6 +398,10 @@ var span = document.getElementsByClassName("close")[0];
                     success: function(){
                         successtoast('Data sudah terhapus')
                         loadListKegiatan(tahun,bulan)
+                        $('[data-toggle="tooltip"]').tooltip({
+                trigger : 'hover'
+            })
+            $('[data-toggle="tooltip"]').tooltip('hide');
                     }, error: function(e){
                         errortoast('Terjadi Kesalahan')
                     }

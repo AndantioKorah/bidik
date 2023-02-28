@@ -1,6 +1,13 @@
-<?php if(isset($skpd)){
-    
-?>
+
+<?php if(isset($skpd)) { ?>
+    <?php if(isset($json_result)) { ?>
+<form target="blank" action="<?=base_url('rekap/C_Rekap/downloadPdf')?>" enctype="multipart/form-data" method="post">
+<input type="hidden" autocomplete="off" class="form-control" id="skpd" name="skpd" value="<?= $data_serach['skpd']; ?>" />
+<input type="hidden" autocomplete="off" class="form-control" id="tahun" name="tahun" value="<?= $data_serach['tahun']; ?>" />
+<input type="hidden" autocomplete="off" class="form-control" id="bulan" name="bulan" value="<?= $data_serach['bulan']; ?>" />
+<button class="btn btn-sm btn-navy" type="submit"><i class="fa fa-download"></i> Download as PDF</button>
+                    </form>
+<?php } ?>
         <div class="col-lg-12" style="width: 100%;">
             <form action="<?=base_url('rekap/C_Rekap/rekapPenilaianSearch/1')?>" method="post" target="_blank">
                 <!-- <center><h5><strong>REKAPITULASI PENILAIAN DISIPLIN KERJA</strong></h5></center> -->

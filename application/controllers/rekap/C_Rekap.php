@@ -1,8 +1,13 @@
 <?php
 
 require 'vendor/autoload.php';
+// require FCPATH.'vendor/autoload.php';
 // use PhpOffice\PhpSpreadSheet\Spreadsheet;
 // use PhpOffice\PhpSpreadSheet\IOFactory;
+// require FCPATH.'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class C_Rekap extends CI_Controller
 {
@@ -60,7 +65,9 @@ class C_Rekap extends CI_Controller
     }
 
     public function readAbsensiFromDb(){
+      
         $data = $this->rekap->readAbsensiFromDb($this->input->post());
+       
         // if($temp){
         //     $data = json_decode($temp['json_result'], true);
         // }
@@ -161,8 +168,11 @@ class C_Rekap extends CI_Controller
     }
 
     public function rekapTppSearch(){
+        
         $this->session->set_userdata('params_rekap_tpp', $this->input->post());
         $data = $this->rekap->rekapTppSearch($this->input->post());
+        // dd($data['json_result']);
+        $data['data_serach'] = $this->input->post();
         $this->load->view('rekap/V_RekapTppResult', $data);
     }
 
@@ -175,6 +185,7 @@ class C_Rekap extends CI_Controller
         $data_absen['tahun'] = $param['tahun'];
         // dd($data_absen['raw_data_excel']);
         $data_rekap = $this->session->userdata('rekap_'.$param['bulan'].'_'.$param['tahun']);
+        
         switch($jenis_file){
             case "absen":
                 $data = null;
@@ -231,6 +242,7 @@ class C_Rekap extends CI_Controller
                     $temp['daftar_perhitungan_tpp'] = $data['result'];
                     $this->session->set_userdata('rekap_'.$param['bulan'].'_'.$param['tahun'], $temp);
                 // }
+               
                 $this->load->view('rekap/V_RekapPerhitunganTpp', $data);
             break;
 
@@ -261,5 +273,64 @@ class C_Rekap extends CI_Controller
             break;
         }
     }
+
+
+    public function downloadPdf(){
+
+        // $data = $this->session->userdata('data_read_absensi_excel');
+        // $data['flag_print'] = 1;
+        // $this->load->view('rekap/V_RekapAbsensiResultNew', $data);
+
+        // dd($this->input->post());
+        $data = $this->rekap->readAbsensiFromDb($this->input->post());
+        $data['penilaian'] = $this->rekap->rekapPenilaianSearch($this->input->post());
+        $data['parameter'] = $this->input->post();
+        $data['disiplin'] = $this->rekap->rekapPenilaianDisiplinSearch($this->input->post());
+
+        $explode_param = explode(";", $data['parameter']['skpd']);
+        $data_rekap = $this->session->userdata('rekap_'.$data['parameter']['bulan'].'_'.$data['parameter']['tahun']);
+        $pagu_tpp = $this->kinerja->countPaguTpp(['id_unitkerja' => $explode_param[0]]);
+        $data['perhitungan_tpp'] = $this->rekap->getDaftarPerhitunganTpp($pagu_tpp, $data_rekap, $data['parameter']);
+        $temp['daftar_perhitungan_tpp'] = $data['perhitungan_tpp'];
+      
+
+    
+
+        // dd($data['disiplin']);
+
+        // $this->load->view('rekap/V_RekapTppPdf', $data);
+        
+        // $data['flag_print'] = 1;
+        // $html = $this->load->view('rekap/V_RekapTppPdf',$data, true);
+        // $mpdf = new \Mpdf\Mpdf([
+        //     'format'=>'A4',
+        //     'orientation'=>'landscape',
+        //     'margin_top'=>5,
+        //     'margin_right'=>10,
+        //     'margin_left'=>10,
+        //     'margin_bottom'=>10,
+        // ]);
+        // $mpdf->WriteHTML($html);
+        // $mpdf->Output();
+
+        $html = $this->load->view('rekap/V_RekapTppPdf', $data, true);
+        $this->mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => [215, 330]]);
+        // $this->stylesheet = file_get_contents('css/style.css');
+        $this->mpdf->AddPage('L', // L - landscape, P - portrait
+                '', '', '', '',
+                10, // margin_left
+                10, // margin right
+                5, // margin top
+                10, // margin bottom
+                18, // margin header
+                12); // margin footer
+        $this->mpdf->WriteHTML($html);
+        $skpd = explode(";", $data['parameter']['skpd']);
+        $bulan = getNamaBulan($data['parameter']['bulan']);
+        // $this->mpdf->Output('Rekap TPP '.$skpd[1].' '.$bulan.' '.$data['parameter']['tahun'].'.pdf', 'D'); // download force
+        $this->mpdf->Output('Rekap TPP '.$skpd[1].' '.$bulan.' '.$data['parameter']['tahun'].'.pdf', 'I'); // view in the explorer
+    
+    }
+
 
 }

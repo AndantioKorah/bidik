@@ -1,0 +1,527 @@
+<style>
+	table {
+		font-size: 12px;
+	}
+	.text{
+		mso-number-format:"\@";/force text/
+	}
+</style>
+	<table width="100%">
+			    <tr>
+			<td colspan="3" align="center"><h5>SISTEM INFORMASI PRESENSI BKPSDM KOTA MANADO</h5></td>
+		</tr>
+	</table>
+<table width="100%">
+	<tr>
+		<td>OPD</td>
+		<td>:</td>
+		<td>Kelurahan Islam</td>
+	</tr>
+	<tr>
+		<td>PERIODE</td>
+		<td>:</td>
+		<td>01-01-2023 s.d. 31-01-2023</td>
+	</tr>
+</table>
+
+<table width="100%" style="border-collapse:collapse;" border="1">
+	<tr>
+		<th>NO</th>
+		<th>Nama Pegawai Negeri Sipil</th>
+					<th>NIP</th>
+							            <th class="fg-color-white" style="text-align:center;">Mg<br>01</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sn<br>02</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sl<br>03</th>
+        			            <th class="fg-color-white" style="text-align:center;">Rb<br>04</th>
+        			            <th class="fg-color-white" style="text-align:center;">Km<br>05</th>
+        			            <th class="fg-color-white" style="text-align:center;">Jm<br>06</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sb<br>07</th>
+        			            <th class="fg-color-white" style="text-align:center;">Mg<br>08</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sn<br>09</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sl<br>10</th>
+        			            <th class="fg-color-white" style="text-align:center;">Rb<br>11</th>
+        			            <th class="fg-color-white" style="text-align:center;">Km<br>12</th>
+        			            <th class="fg-color-white" style="text-align:center;">Jm<br>13</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sb<br>14</th>
+        			            <th class="fg-color-white" style="text-align:center;">Mg<br>15</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sn<br>16</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sl<br>17</th>
+        			            <th class="fg-color-white" style="text-align:center;">Rb<br>18</th>
+        			            <th class="fg-color-white" style="text-align:center;">Km<br>19</th>
+        			            <th class="fg-color-white" style="text-align:center;">Jm<br>20</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sb<br>21</th>
+        			            <th class="fg-color-white" style="text-align:center;">Mg<br>22</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sn<br>23</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sl<br>24</th>
+        			            <th class="fg-color-white" style="text-align:center;">Rb<br>25</th>
+        			            <th class="fg-color-white" style="text-align:center;">Km<br>26</th>
+        			            <th class="fg-color-white" style="text-align:center;">Jm<br>27</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sb<br>28</th>
+        			            <th class="fg-color-white" style="text-align:center;">Mg<br>29</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sn<br>30</th>
+        			            <th class="fg-color-white" style="text-align:center;">Sl<br>31</th>
+        	</tr>
+		<tr>
+		<td style="text-align:center;">1</td>
+		<td align="left">Dian Indriany Wilujeng, SE</td>
+					<td class="text" align="center">198701102011022001</td>
+		
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:31-16:16-H(PC)</td> -->
+			<td align="center">07:31 - 16:16</td>
+					<!-- <td align="center">07:39-16:01-H(PC)</td> -->
+			<td align="center">07:39 - 16:01</td>
+					<!-- <td align="center">07:23-14:42-H(PC)</td> -->
+			<td align="center">07:23 - 14:42</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:33-16:11-H(PC)</td> -->
+			<td align="center">07:33 - 16:11</td>
+					<!-- <td align="center">07:40-16:01-H(PC)</td> -->
+			<td align="center">07:40 - 16:01</td>
+					<!-- <td align="center">07:55-16:15-H(T)(PC)</td> -->
+			<td align="center">07:55 - 16:15</td>
+					<!-- <td align="center">07:47-16:03-H(T)(PC)</td> -->
+			<td align="center">07:47 - 16:03</td>
+					<!-- <td align="center">07:30-14:52-H(PC)</td> -->
+			<td align="center">07:30 - 14:52</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:34-16:02-H(PC)</td> -->
+			<td align="center">07:34 - 16:02</td>
+					<!-- <td align="center">07:39-16:19-H(PC)</td> -->
+			<td align="center">07:39 - 16:19</td>
+					<!-- <td align="center">07:39-16:02-H(PC)</td> -->
+			<td align="center">07:39 - 16:02</td>
+					<!-- <td align="center">07:35-16:03-H(PC)</td> -->
+			<td align="center">07:35 - 16:03</td>
+					<!-- <td align="center">07:36-14:53-H(T)(PC)</td> -->
+			<td align="center">07:36 - 14:53</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:44-16:08-H(PC)</td> -->
+			<td align="center">07:44 - 16:08</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:43-16:15-H(PC)</td> -->
+			<td align="center">07:43 - 16:15</td>
+					<!-- <td align="center">08:36-16:04-H(T)(PC)</td> -->
+			<td align="center">08:36 - 16:04</td>
+			</tr>
+		</tr>
+		<tr>
+		<td style="text-align:center;">2</td>
+		<td align="left">Natalia Christin Samalukang</td>
+					<td class="text" align="center">198212232010012007</td>
+		
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:29-17:48-H</td> -->
+			<td align="center">07:29 - 17:48</td>
+					<!-- <td align="center">07:15-18:51-H</td> -->
+			<td align="center">07:15 - 18:51</td>
+					<!-- <td align="center">07:16-17:46-H</td> -->
+			<td align="center">07:16 - 17:46</td>
+					<!-- <td align="center">07:25-00:00-H(TAP)</td> -->
+			<td align="center">07:25 - 00:00</td>
+					<!-- <td align="center">07:16-00:00-H(TAP)</td> -->
+			<td align="center">07:16 - 00:00</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:40-00:00-H(TAP)</td> -->
+			<td align="center">07:40 - 00:00</td>
+					<!-- <td align="center">07:34-18:03-H</td> -->
+			<td align="center">07:34 - 18:03</td>
+					<!-- <td align="center">07:15-17:55-H</td> -->
+			<td align="center">07:15 - 17:55</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:23-17:52-H</td> -->
+			<td align="center">07:23 - 17:52</td>
+					<!-- <td align="center">08:42-17:52-H(T)</td> -->
+			<td align="center">08:42 - 17:52</td>
+			</tr>
+		</tr>
+		<tr>
+		<td style="text-align:center;">3</td>
+		<td align="left">Tatang Suryana, S.Sos</td>
+					<td class="text" align="center">196707052008011022</td>
+		
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:19-16:06-H(PC)</td> -->
+			<td align="center">07:19 - 16:06</td>
+					<!-- <td align="center">07:34-16:01-H(PC)</td> -->
+			<td align="center">07:34 - 16:01</td>
+					<!-- <td align="center">07:18-14:34-H(PC)</td> -->
+			<td align="center">07:18 - 14:34</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:23-16:02-H(PC)</td> -->
+			<td align="center">07:23 - 16:02</td>
+					<!-- <td align="center">07:24-16:01-H(PC)</td> -->
+			<td align="center">07:24 - 16:01</td>
+					<!-- <td align="center">07:26-16:05-H(PC)</td> -->
+			<td align="center">07:26 - 16:05</td>
+					<!-- <td align="center">07:24-16:08-H(PC)</td> -->
+			<td align="center">07:24 - 16:08</td>
+					<!-- <td align="center">07:29-14:34-H(PC)</td> -->
+			<td align="center">07:29 - 14:34</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:22-16:02-H(PC)</td> -->
+			<td align="center">07:22 - 16:02</td>
+					<!-- <td align="center">07:33-16:02-H(PC)</td> -->
+			<td align="center">07:33 - 16:02</td>
+					<!-- <td align="center">07:26-16:02-H(PC)</td> -->
+			<td align="center">07:26 - 16:02</td>
+					<!-- <td align="center">07:16-16:05-H(PC)</td> -->
+			<td align="center">07:16 - 16:05</td>
+					<!-- <td align="center">07:23-14:32-H(PC)</td> -->
+			<td align="center">07:23 - 14:32</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:35-16:01-H(PC)</td> -->
+			<td align="center">07:35 - 16:01</td>
+					<!-- <td align="center">07:18-16:03-H(PC)</td> -->
+			<td align="center">07:18 - 16:03</td>
+					<!-- <td align="center">07:36-16:03-H(PC)</td> -->
+			<td align="center">07:36 - 16:03</td>
+					<!-- <td align="center">13:15-00:00-H(T)(TAP)</td> -->
+			<td align="center">13:15 - 00:00</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:19-16:07-H(PC)</td> -->
+			<td align="center">07:19 - 16:07</td>
+					<!-- <td align="center">07:34-16:09-H(PC)</td> -->
+			<td align="center">07:34 - 16:09</td>
+			</tr>
+		</tr>
+		<tr>
+		<td style="text-align:center;">4</td>
+		<td align="left">Wahyudi, S.Sos</td>
+					<td class="text" align="center">198102242007011006</td>
+		
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:17-16:02-H(PC)</td> -->
+			<td align="center">07:17 - 16:02</td>
+					<!-- <td align="center">07:31-16:02-H(PC)</td> -->
+			<td align="center">07:31 - 16:02</td>
+					<!-- <td align="center">07:07-15:42-H</td> -->
+			<td align="center">07:07 - 15:42</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:25-16:08-H(PC)</td> -->
+			<td align="center">07:25 - 16:08</td>
+					<!-- <td align="center">07:33-16:02-H(PC)</td> -->
+			<td align="center">07:33 - 16:02</td>
+					<!-- <td align="center">07:29-16:04-H(PC)</td> -->
+			<td align="center">07:29 - 16:04</td>
+					<!-- <td align="center">07:38-16:05-H(PC)</td> -->
+			<td align="center">07:38 - 16:05</td>
+					<!-- <td align="center">07:11-14:34-H(PC)</td> -->
+			<td align="center">07:11 - 14:34</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:23-16:09-H(PC)</td> -->
+			<td align="center">07:23 - 16:09</td>
+					<!-- <td align="center">07:33-16:10-H(PC)</td> -->
+			<td align="center">07:33 - 16:10</td>
+					<!-- <td align="center">07:37-16:03-H(PC)</td> -->
+			<td align="center">07:37 - 16:03</td>
+					<!-- <td align="center">07:29-16:02-H(PC)</td> -->
+			<td align="center">07:29 - 16:02</td>
+					<!-- <td align="center">07:35-14:32-H(T)(PC)</td> -->
+			<td align="center">07:35 - 14:32</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:37-16:02-H(PC)</td> -->
+			<td align="center">07:37 - 16:02</td>
+					<!-- <td align="center">07:21-16:08-H(PC)</td> -->
+			<td align="center">07:21 - 16:08</td>
+					<!-- <td align="center">07:27-16:02-H(PC)</td> -->
+			<td align="center">07:27 - 16:02</td>
+					<!-- <td align="center">07:11-00:00-H(TAP)</td> -->
+			<td align="center">07:11 - 00:00</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:25-16:07-H(PC)</td> -->
+			<td align="center">07:25 - 16:07</td>
+					<!-- <td align="center">07:32-16:27-H(PC)</td> -->
+			<td align="center">07:32 - 16:27</td>
+			</tr>
+		</tr>
+		<tr>
+		<td style="text-align:center;">5</td>
+		<td align="left">Yani Semuel Zeth Kalangi, M.Si</td>
+					<td class="text" align="center">197308182006041013</td>
+		
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:29-16:54-H(PC)</td> -->
+			<td align="center">07:29 - 16:54</td>
+					<!-- <td align="center">07:41-16:07-H(PC)</td> -->
+			<td align="center">07:41 - 16:07</td>
+					<!-- <td align="center">07:28-15:09-H(PC)</td> -->
+			<td align="center">07:28 - 15:09</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:30-16:11-H(PC)</td> -->
+			<td align="center">07:30 - 16:11</td>
+					<!-- <td align="center">07:38-16:02-H(PC)</td> -->
+			<td align="center">07:38 - 16:02</td>
+					<!-- <td align="center">07:45-16:17-H(PC)</td> -->
+			<td align="center">07:45 - 16:17</td>
+					<!-- <td align="center">07:33-17:31-H</td> -->
+			<td align="center">07:33 - 17:31</td>
+					<!-- <td align="center">07:13-15:50-H</td> -->
+			<td align="center">07:13 - 15:50</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:42-16:03-H(PC)</td> -->
+			<td align="center">07:42 - 16:03</td>
+					<!-- <td align="center">07:41-16:08-H(PC)</td> -->
+			<td align="center">07:41 - 16:08</td>
+					<!-- <td align="center">07:42-16:04-H(PC)</td> -->
+			<td align="center">07:42 - 16:04</td>
+					<!-- <td align="center">07:36-16:04-H(PC)</td> -->
+			<td align="center">07:36 - 16:04</td>
+					<!-- <td align="center">07:20-15:06-H(PC)</td> -->
+			<td align="center">07:20 - 15:06</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:33-17:26-H</td> -->
+			<td align="center">07:33 - 17:26</td>
+					<!-- <td align="center">07:39-18:03-H</td> -->
+			<td align="center">07:39 - 18:03</td>
+					<!-- <td align="center">07:45-16:06-H(PC)</td> -->
+			<td align="center">07:45 - 16:06</td>
+					<!-- <td align="center">17:09-17:28-H(T)</td> -->
+			<td align="center">17:09 - 17:28</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:37-17:01-H</td> -->
+			<td align="center">07:37 - 17:01</td>
+					<!-- <td align="center">07:35-16:25-H(PC)</td> -->
+			<td align="center">07:35 - 16:25</td>
+			</tr>
+		</tr>
+		<tr>
+		<td style="text-align:center;">6</td>
+		<td align="left">Yuli Podungge, ST</td>
+					<td class="text" align="center">197507312010012001</td>
+		
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:18-17:28-H</td> -->
+			<td align="center">07:18 - 17:28</td>
+					<!-- <td align="center">07:38-17:36-H</td> -->
+			<td align="center">07:38 - 17:36</td>
+					<!-- <td align="center">07:18-15:39-H</td> -->
+			<td align="center">07:18 - 15:39</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:41-17:16-H</td> -->
+			<td align="center">07:41 - 17:16</td>
+					<!-- <td align="center">07:38-17:30-H</td> -->
+			<td align="center">07:38 - 17:30</td>
+					<!-- <td align="center">07:38-17:04-H</td> -->
+			<td align="center">07:38 - 17:04</td>
+					<!-- <td align="center">07:16-17:05-H</td> -->
+			<td align="center">07:16 - 17:05</td>
+					<!-- <td align="center">07:20-16:02-H</td> -->
+			<td align="center">07:20 - 16:02</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:33-17:05-H</td> -->
+			<td align="center">07:33 - 17:05</td>
+					<!-- <td align="center">07:39-17:17-H</td> -->
+			<td align="center">07:39 - 17:17</td>
+					<!-- <td align="center">07:42-17:17-H</td> -->
+			<td align="center">07:42 - 17:17</td>
+					<!-- <td align="center">07:36-17:02-H</td> -->
+			<td align="center">07:36 - 17:02</td>
+					<!-- <td align="center">07:18-16:00-H</td> -->
+			<td align="center">07:18 - 16:00</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-A</td> -->
+			<td align="center">A</td>
+					<!-- <td align="center">07:39-17:06-H</td> -->
+			<td align="center">07:39 - 17:06</td>
+					<!-- <td align="center">07:33-17:08-H</td> -->
+			<td align="center">07:33 - 17:08</td>
+					<!-- <td align="center">07:38-17:09-H</td> -->
+			<td align="center">07:38 - 17:09</td>
+					<!-- <td align="center">07:33-16:54-H(T)</td> -->
+			<td align="center">07:33 - 16:54</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">00:00-00:00-L</td> -->
+			<td align="center">-</td>
+					<!-- <td align="center">07:47-17:46-H(T)</td> -->
+			<td align="center">07:47 - 17:46</td>
+					<!-- <td align="center">07:26-17:45-H</td> -->
+			<td align="center">07:26 - 17:45</td>
+			</tr>
+		</tr>
+	</table>
+
+<table>
+	<thead>
+		<tr>
+						<th>dicetak di Sistem Informasi Presensi BKPSDM Kota Manado pada hari Rabu tanggal 15-02-2023</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Dicetak Oleh :</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Verifikasi Oleh : </td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+	</tbody>
+</table>	

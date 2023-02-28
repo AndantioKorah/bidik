@@ -1,4 +1,11 @@
+
 <?php if($realisasi){ ?>
+    
+	<link rel="stylesheet" href="<?=base_url('assets/css/bootstrap-datetimepicker.css')?>">
+  <link rel="stylesheet" href="<?=base_url('assets/css/bootstrap-datepicker.css')?>">
+  <script src="<?=base_url('assets/js/bootstrap-datetimepicker.js')?>"></script>
+  <script src="<?=base_url('assets/js/bootstrap-datepicker.js')?>"></script>
+
     <form id="form_edit_realisasi_kinerja">
         <input style="display: none;" id="id_kegiatan" name="id_kegiatan" value="<?=$realisasi['id']?>" />
         <div class="row p-3">
@@ -13,19 +20,29 @@
             </div>
 
             <div class="col-md-4">
-                <label>Tanggal Kegiatan</label>
-                <input autocomplete="off"  id="edit_tanggal_kegiatan"  class="form-control form-control-sm" name="edit_tanggal_kegiatan" value="<?= formatDateNamaBulanWT($realisasi['tanggal_kegiatan'])?>" readonly/>
+                <label for="exampleFormControlTextarea1">Detail Kegiatan</label>
+                <textarea class="form-control" id="edit_deskripsi_kegiatan" name="edit_deskripsi_kegiatan" rows="3" required><?=$realisasi['deskripsi_kegiatan']?></textarea>
+
+                <!-- <input  autocomplete="off" id="edit_deskripsi_kegiatan"  class="form-control form-control-sm" name="edit_deskripsi_kegiatan" value="<?=$realisasi['deskripsi_kegiatan']?>" /> -->
             </div>
 
             <div class="col-md-4">
-                <label>Detail Kegiatan</label>
-                <input autocomplete="off" id="edit_deskripsi_kegiatan"  class="form-control form-control-sm" name="edit_deskripsi_kegiatan" value="<?=$realisasi['deskripsi_kegiatan']?>" />
+                <label>Tanggal Kegiatan</label>
+                <!-- <input readonly autocomplete="off"  id="edit_tanggal_kegiatan"  class="form-control form-control-sm " name="edit_tanggal_kegiatan" value="<?= formatDateNamaBulanWT($realisasi['tanggal_kegiatan'])?>" /> -->
+                
+                <input  class="form-control datetimepickerthis" id="edit_tanggal_kegiatan" name="edit_tanggal_kegiatan"  value="<?= formatDateForEdit($realisasi['tanggal_kegiatan']) ;?>">
+   
+            
             </div>
+
+          
 
             <div class="col-md-4">
                 <label>Realisasi Target (Kuantitas)</label>
                 <input required autocomplete="off" id="edit_realisasi_target_kuantitas"  class="form-control form-control-sm" name="edit_realisasi_target_kuantitas" value="<?=$realisasi['realisasi_target_kuantitas']?>" />
             </div>
+
+        
 
             <div class="col-md-12"><hr></div>
             <div class="col-md-12 text-right">
@@ -37,9 +54,7 @@
         $(function(){
             $('.select2_this').select2()
 
-            $("#tanggal_lahir").inputmask("99-99-9999", {
-                placeholder: "hh-bb-tttt"
-            });
+        
         })
 
         $('#form_edit_realisasi_kinerja').on('submit', function(e){
@@ -48,6 +63,16 @@
 
             var bulan = d.getMonth() + 1;
             var tahun = d.getFullYear();
+            // document.getElementById('edit_deskripsi_kegiatan_hidden').value=null;
+
+            // var kegiatan = $('#edit_deskripsi_kegiatan_hiden').val()
+            
+            // if(kegiatan == ""){
+            //     alert(1);
+            // } else {
+            //     alert(2);
+            // }
+            // return false;
 
             e.preventDefault()
             $.ajax({
@@ -69,6 +94,16 @@
                 }
             })
         })
+
+
+        $('.datetimepickerthis').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            autoclose: true,
+            todayHighlight: true,
+            todayBtn: true
+        })
+     
+
     </script>
 <?php } else { ?>
     <div class="col-12 text-center">

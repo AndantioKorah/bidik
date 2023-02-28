@@ -1,0 +1,307 @@
+
+
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: 8192</p>
+<p>Message:  __autoload() is deprecated, use spl_autoload_register() instead</p>
+<p>Filename: dompdf/dompdf_config.inc.php</p>
+<p>Line Number: 431</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\libraries\dompdf_gen.php<br />
+			Line: 25<br />
+			Function: _error_handler			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\libraries\dompdf_gen.php<br />
+			Line: 25<br />
+			Function: require_once			</p>
+
+		
+	
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\controllers\rekap\C_Rekap.php<br />
+			Line: 278<br />
+			Function: library			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\index.php<br />
+			Line: 317<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  mb_detect_encoding() expects parameter 1 to be string, object given</p>
+<p>Filename: include/dompdf.cls.php</p>
+<p>Line Number: 370</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\third_party\dompdf\include\dompdf.cls.php<br />
+			Line: 370<br />
+			Function: mb_detect_encoding			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\controllers\rekap\C_Rekap.php<br />
+			Line: 288<br />
+			Function: load_html			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\index.php<br />
+			Line: 317<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  preg_match() expects parameter 2 to be string, object given</p>
+<p>Filename: include/dompdf.cls.php</p>
+<p>Line Number: 377</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\third_party\dompdf\include\dompdf.cls.php<br />
+			Line: 377<br />
+			Function: preg_match			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\controllers\rekap\C_Rekap.php<br />
+			Line: 288<br />
+			Function: load_html			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\index.php<br />
+			Line: 317<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  preg_match() expects parameter 2 to be string, object given</p>
+<p>Filename: include/dompdf.cls.php</p>
+<p>Line Number: 377</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\third_party\dompdf\include\dompdf.cls.php<br />
+			Line: 377<br />
+			Function: preg_match			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\controllers\rekap\C_Rekap.php<br />
+			Line: 288<br />
+			Function: load_html			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\index.php<br />
+			Line: 317<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  mb_detect_encoding() expects parameter 1 to be string, object given</p>
+<p>Filename: include/dompdf.cls.php</p>
+<p>Line Number: 380</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\third_party\dompdf\include\dompdf.cls.php<br />
+			Line: 380<br />
+			Function: mb_detect_encoding			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\controllers\rekap\C_Rekap.php<br />
+			Line: 288<br />
+			Function: load_html			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\index.php<br />
+			Line: 317<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Warning</p>
+<p>Message:  Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\bidik\system\core\Exceptions.php:272)</p>
+<p>Filename: core/Common.php</p>
+<p>Line Number: 570</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+
+</div>
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>An uncaught Exception was encountered</h4>
+
+<p>Type: Error</p>
+<p>Message: Object of class CI_Loader could not be converted to string</p>
+<p>Filename: C:\xampp\htdocs\bidik\application\third_party\dompdf\include\dompdf.cls.php</p>
+<p>Line Number: 401</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\third_party\dompdf\include\dompdf.cls.php<br />
+			Line: 401<br />
+			Function: str_replace			</p>
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\application\controllers\rekap\C_Rekap.php<br />
+			Line: 288<br />
+			Function: load_html			</p>
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: C:\xampp\htdocs\bidik\index.php<br />
+			Line: 317<br />
+			Function: require_once			</p>
+		
+	
+
+</div>

@@ -1,6 +1,6 @@
 <div class="card card-default">
     <div class="card-header"  style="display: block;">
-        <h3 class="card-title">Rekap Tambahan Penghasilan Pegawai (TPP)</h3>
+        <h3 class="card-title">Rekap Tambahan Penghasilan Pegawai (TPP)</h3> 
     </div>
     <div class="card-body" style="display: block;">
         <!-- <form id="form_upload_file" enctype="multipart/form-data" method="post"> -->
@@ -56,6 +56,7 @@
 <div class="card card-default">
     <div class="card-header">
         <h3 class="card-title">Rekap Tambahan Penghasilan Pegawai (TPP)</h3>
+        
     </div>
     <div class="card-body">
         <div id="div_result" class="row">

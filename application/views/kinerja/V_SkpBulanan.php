@@ -10,7 +10,7 @@
                     <select class="form-control select2-navy" style="width: 100%"
                         id="bulan" data-dropdown-css-class="select2-navy" name="bulan">
                         <option <?=date('m') == '01' ? 'selected' : ''?> value="01">Januari</option>
-                        <option <?=date('m') == '02' ? 'selected' : ''?> value="02">Feburari</option>
+                        <option <?=date('m') == '02' ? 'selected' : ''?> value="02">Februari</option>
                         <option <?=date('m') == '03' ? 'selected' : ''?> value="03">Maret</option>
                         <option <?=date('m') == '04' ? 'selected' : ''?> value="04">April</option>
                         <option <?=date('m') == '05' ? 'selected' : ''?> value="05">Mei</option>

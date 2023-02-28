@@ -1,23 +1,41 @@
 <?php if($list_rekap_kinerja){ ?>
+    <style>
+ .thCustom { 
+              background-color: #464646;
+              color: #d1d1d1;
+              border-top: 5px;
+              padding: 8px 15px; 
+              font-weight: normal;
+            } 
+ .tdCustom {
+              background-color: #464646;
+              color: #d1d1d1;
+              border-top: 5px;
+              padding: 8px 15px; 
+              font-weight: normal;
+ }
+
+
+
+    </style>
     <div class="col-12 table-responsive">
-    <table border="2"  class="table table-hover table-striped" id="table_rekap_kinerja">
+    <table border="2"  class="table table-striped" id="table_rekap_kinerja">
     <tbody><tr height="20" style="height:15.0pt">
-    <th rowspan="2" class="table-danger" height="40" >No</th>
-    <th rowspan="2" class="table-danger">Uraian Tugas</th>
-    <th rowspan="2" class="table-danger">Sasaran Kerja</th>
-    <th rowspan="2" class="table-danger">Tahun</th>
-    <th rowspan="2" class="table-danger">Bulan</th>
-    <th colspan="3" class="text-center table-danger" width="265" style="border-left:none;width:199pt">Target<span style="mso-spacerun:yes">&nbsp;</span></th>
-    <th colspan="3" class="text-center table-danger" width="192" style="border-left:none;width:144pt">Realisasi</th>
+    <th rowspan="2" class="thCustom" height="40" >No</th>
+    <th rowspan="2" class="thCustom">Uraian Tugas</th>
+    <th rowspan="2" class="thCustom">Sasaran Kerja</th>
+    <th rowspan="2" class="thCustom">Tahun</th>
+    <th rowspan="2" class="thCustom">Bulan</th>
+    <th colspan="3" class="text-center thCustom" width="265" style="border-left:none;width:199pt">Target<span style="mso-spacerun:yes">&nbsp;</span></th>
+    <th colspan="3" class="text-center thCustom" width="192" style="border-left:none;width:144pt">Realisasi</th>
     </tr>
     <tr height="20" style="height:15.0pt">
-    <td height="20" class="xl67 table-danger" style="height:15.0pt;border-top:none;border-left:
-    none"> <b>Kuantitas</b></td>
-    <td class="xl67 table-danger" style="border-top:none;border-left:none"><b>Satuan</b></td>
-    <td class="xl67 table-danger" style="border-top:none;border-left:none"><b>Capaian</b></td>
-    <td class="xl67 table-danger" style="border-top:none;border-left:none"><b>Kuantitas</b></td>
-    <td class="xl67 table-danger" style="border-top:none;border-left:none"><b>Satuan</b></td>
-    <td class="xl67 table-danger" style="border-top:none;border-left:none;width:144pt"><b>Capaian</b></td>
+    <td height="20" class="tdCustom"> Kuantitas</td>
+    <td class="tdCustom " >Satuan</td>
+    <td class="tdCustom " >Capaian</td>
+    <td class="tdCustom " >Kuantitas</td>
+    <td class="tdCustom " >Satuan</td>
+    <td class="tdCustom " >Capaian</td>
     </tr>
   
     <!--[if supportMisalignedColumns]-->
@@ -29,6 +47,9 @@
                 
                 // $realisasi_kualitas = $lp['realisasi_target_kuantitas']/$lp['target_kuantitas'] * 100;
                 $progress = (floatval($lp['realisasi_target_kuantitas'])/floatval($lp['target_kuantitas'])) * 100;
+                if($progress > 100){
+                    $progress = 100;
+                }
                 $progress = formatTwoMaxDecimal($progress);
                 ?>
                     <tr onclick="openListKegiatan('<?=$lp['id']?>')">
