@@ -255,6 +255,14 @@
         var formvalue = $('#upload_form');
         var form_data = new FormData(formvalue[0]);
         var ins = document.getElementById('image_file').files.length;
+        
+        if(ins == 0){
+        errortoast("Silahkan upload bukti kegiatan terlebih dahulu");
+        document.getElementById('btn_upload').disabled = false;
+        $('#btn_upload').html('<i class="fa fa-save"></i>  SIMPAN')
+        return false;
+        }
+       
       
         $.ajax({  
         url:"<?=base_url("kinerja/C_Kinerja/insertLaporanKegiatan")?>",
