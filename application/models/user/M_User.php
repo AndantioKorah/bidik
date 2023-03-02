@@ -1005,6 +1005,180 @@
             // $this->db->where_in('id', $list_id)
             //         ->update('m_bidang', ['nama_bidang' => 'Sekretariat']);
         }
+
+        public function importPegawaiByUnitKerjaMaster($unitkerjamaster){
+            $rs['code'] = 0;
+            $rs['message'] = 'OK';
+
+            $this->db->trans_begin();
+
+            // if($flag_import_new_db == 1){
+            //     $list_pegawai = $list_pegawai_export;
+            //     $this->session->set_userdata(['list_pegawai_export' => null]);
+            // } else {
+                $list_pegawai = $this->db->select('a.*')
+                                    ->from('db_pegawai.pegawai a')
+                                    ->join('db_pegawai.unitkerja b', 'a.skpd = b.id_unitkerja')
+                                    ->where('b.id_unitkerjamaster', $unitkerjamaster)
+                                    ->get()->result_array();
+            // }
+
+            if($list_pegawai){
+                $bulkuser = null;
+                $list_id_pegawai = null;
+                echo "jumlah pegawai yang ada ". count($list_pegawai).'<br>';
+                foreach($list_pegawai as $lp){
+                    $exist = $this->db->select('*')
+                            ->from('m_user')
+                            ->where('username', $lp['nipbaru_ws'])
+                            ->where('flag_active', 1)
+                            ->get()->row_array();
+                    if($exist){
+                        $list_id_pegawai[] = $lp['id_peg'];
+                        echo $lp['nama'].' sudah terdaftar'.'<br>';
+                    } else {
+                        $user['username'] = $lp['nipbaru_ws'];
+                        $user['nama'] = trim(getNamaPegawaiFull($lp));
+                        $nip_baru = explode(" ", $lp['nipbaru']);
+                        $password = $nip_baru[0];
+                        $pass_split = str_split($password);
+                        $new_password = $pass_split[6].$pass_split[7].$pass_split[4].$pass_split[5].$pass_split[0].$pass_split[1].$pass_split[2].$pass_split[3];
+                        $user['password'] = $this->general_library->encrypt($user['username'], $new_password);
+                        $bulkuser[] = $user;
+                        $list_id_pegawai[] = $lp['id_peg'];
+                        echo "building data .... ".$user['nama'].'<br>';
+                        // echo 'masukkan '.$lp['nipbaru_ws'].' ke dalam list<br>';
+                    }
+                }
+                // if($list_id_pegawai){
+                //     $this->db->where_in('id_peg', $list_id_pegawai)
+                //             ->update('db_pegawai.pegawai', ['flag_user_created' => 1]);
+                // }
+                if($bulkuser){
+                    $this->db->insert_batch('m_user', $bulkuser);
+                    echo "jumlah pegawai yang didaftarkan ". count($bulkuser).'<br>';
+                } else {
+                    $rs['code'] = 2;
+                    $rs['message'] = 'Import Selesai';
+                }
+            } else {
+                $rs['code'] = 1;
+                $rs['message'] = 'Terjadi Kesalahan';
+            }
+
+            if($this->db->trans_status() == FALSE){
+                $this->db->trans_rollback();
+                $rs['code'] = 1;
+                $rs['message'] = 'Terjadi Kesalahan';
+            } else {
+                $this->db->trans_commit();
+            }
+
+            return $rs;
+        }
+
+        public function setRolesBulk($id_unitkerja){
+            $list_pegawai = $this->db->select('a.nama, c.nama_jabatan, b.id as id_m_user,
+                                    c.kepalaskpd, c.eselon, d.id as id_role, a.nipbaru_ws as nip')
+                                    ->from('db_pegawai.pegawai a')
+                                    ->join('m_user b', 'a.nipbaru_ws = b.username')
+                                    ->join('db_pegawai.jabatan c', 'a.jabatan = c.id_jabatanpeg')
+                                    ->join('m_user_role d', 'b.id = d.id_m_user', 'left')
+                                    ->where('b.flag_active', 1)
+                                    ->group_by('a.nipbaru_ws')
+                                    ->get()->result_array();
+            $bulkroles = null;
+            $i = 0;
+            $temp_list_pegawai = null;
+            foreach($list_pegawai as $lp){
+                if(!$lp['id_role'] && 
+                    !stringStartWith('Pegawai Tidak Terlacak', $lp['nama_jabatan']) &&
+                    !stringStartWith('Pegawai Lewat BUP', $lp['nama_jabatan'])){
+                    echo "building data ... ".$lp['nama'].'<br>';    
+                    
+                    if(stringStartWith('Kepala Bidang', $lp['nama_jabatan']) ||
+                        stringStartWith('Kepala Bagian', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 11;
+                        $bulkroles[$i]['is_default'] = 1;
+                        if($lp['kepalaskpd'] == 1){
+                            $bulkroles[$i]['id_m_role'] = 13;
+                        }
+                    } else if(stringStartWith('Kepala Sub', $lp['nama_jabatan']) || 
+                        stringStartWith('Kepala Seksi', $lp['nama_jabatan']) ||
+                        stringStartWith('Kasubag', $lp['nama_jabatan']) ||
+                        stringStartWith('Kepala Tata Usaha', $lp['nama_jabatan']) ||
+                        stringStartWith('Kepala Unit Pelaksana', $lp['nama_jabatan']) ||
+                        stringStartWith('Kepala UPTD', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 15;
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Sekretaris', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['is_default'] = 1;
+                        if(stringStartWith('Sekretaris DPRD', $lp['nama_jabatan'])){
+                            $bulkroles[$i]['id_m_role'] = 13;
+                        } else if(stringStartWith('Sekretaris Daerah', $lp['nama_jabatan'])){
+                            $bulkroles[$i]['id_m_role'] = 18;
+                        } else {
+                            $bulkroles[$i]['id_m_role'] = 12;
+                        }
+                    } else if(stringStartWith('Lurah', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_role'] = 21;
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Camat', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_role'] = 22;
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Guru', $lp['nama_jabatan']) ||
+                        stringStartWith('Pengawas TK/SD', $lp['nama_jabatan']) ||
+                        stringStartWith('Penjaga Sekolah', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 20;
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Kepala Sekolah', $lp['nama_jabatan']) ||
+                        stringStartWith('Kepala Taman Kanak-Kanak', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 19;
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Asisten', $lp['nama_jabatan']) && $lp['eselon'] == 'II B'){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 23;
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Staf Ahli', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 24;
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if(stringStartWith('Pelaksana', $lp['nama_jabatan']) ||
+                        stringStartWith('Dokter', $lp['nama_jabatan'])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 10;
+                        $bulkroles[$i]['is_default'] = 1;
+                    } else if($lp['kepalaskpd'] == 1 
+                        && ($lp['eselon'] == 'II B' || stringStartWith('Kepala Puskesmas', $lp['nama_jabatan']))){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 13;
+                        $bulkroles[$i]['is_default'] = 1;
+                    }
+
+                    if(!isset($bulkroles[$i])){
+                        $bulkroles[$i]['id_m_user'] = $lp['id_m_user'];
+                        $bulkroles[$i]['id_m_role'] = 10;
+                        $bulkroles[$i]['is_default'] = 1;
+                        $temp_list_pegawai[] = $lp;
+                    }
+                    $i++;
+                }
+            }
+
+            if($bulkroles){
+                $this->db->insert_batch('m_user_role', $bulkroles);
+                echo "done insert bulk ...";
+            } else {
+                echo "nothing to insert";
+            }
+        }
 	}
 
 

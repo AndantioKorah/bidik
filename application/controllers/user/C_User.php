@@ -313,4 +313,12 @@ class C_User extends CI_Controller
     public function getSubBidangByBidang($id){
         echo json_encode($this->master->getSubBidangByBidang($id));
     }
+
+    public function setRolesBulk(){
+        $this->user->setRolesBulk(null);
+    }
+
+    public function importPegawaiByUnitKerjaMaster($id_unitkerjamaster){
+        echo json_encode($this->user->importPegawaiByUnitKerjaMaster($id_unitkerjamaster));
+    }
 }
