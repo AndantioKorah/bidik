@@ -809,7 +809,42 @@
         if($this->general_library->isAdministrator() || $this->general_library->isProgrammer()){
             $id_count = $this->general_library->getUnitKerjaPegawai();
         } 
+
+        if($result){
+            $temp = $result;
+            $result = null;
+            foreach($temp as $t){
+                if(isset($result[$t['nip'].$t['dokumen_pendukung']])){
+                    //jika tanggal kurang dari tanggal "dari_tanggal", maka tanggal di data $t yang baru akan menjadi data "dari_tanggal" yang baru
+                    if(formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']) < formatDateOnly($result[$t['nip'].$t['dokumen_pendukung']]['dari_tanggal'])){
+                        $result[$t['nip'].$t['dokumen_pendukung']]['dari_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                    }
+
+                    //jika tanggal lebih dari tanggal "sampai_tanggal", maka tanggal di data $t yang baru akan menjadi data "sampai_tanggal" yang baru
+                    if(formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']) > formatDateOnly($result[$t['nip'].$t['dokumen_pendukung']]['sampai_tanggal'])){
+                        $result[$t['nip'].$t['dokumen_pendukung']]['sampai_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                    }
+
+                    $result[$t['nip'].$t['dokumen_pendukung']]['list_id'][] = $t['id'];
+                } else {
+                    $result[$t['nip'].$t['dokumen_pendukung']] = $t;
+                    $result[$t['nip'].$t['dokumen_pendukung']]['list_id'][] = $t['id'];
+                    $result[$t['nip'].$t['dokumen_pendukung']]['dari_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                    $result[$t['nip'].$t['dokumen_pendukung']]['sampai_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                }
+            }
+        }
+
         $count = $this->countTotalDataPendukung($id_count, $bulan, $tahun);
+        // if($status == 1){
+        //     $count['pengajuan'] = count($result);
+        // } else if($status == 2){
+        //     $count['diterima'] = count($result);
+        // } else if($status == 3){
+        //     $count['ditolak'] = count($result);
+        // } else if($status == 4){
+        //     $count['batal'] = count($result);
+        // }
         return [$result, $count];
     }
 
@@ -935,7 +970,7 @@
         $rs['ditolak'] = 0;
         $rs['batal'] = 0;
 
-        $this->db->select('COUNT(a.id) as total, a.status')
+        $this->db->select('a.*')
                 ->from('t_dokumen_pendukung a')
                 ->join('m_status_dokumen_pendukung b', 'a.status = b.id')
                 ->join('m_user c', 'a.id_m_user = c.id')
@@ -943,7 +978,7 @@
                 ->where('a.bulan', floatval($bulan))
                 ->where('a.tahun', floatval($tahun))
                 ->where('a.flag_active', 1)
-                ->group_by('a.status');
+                ->group_by('a.status, a.dokumen_pendukung');
 
         if($this->general_library->isProgrammer() || $this->general_library->isAdministrator() || ($this->general_library->getBidangUser() == ID_BIDANG_PEKIN && $flag_verif == 1)){
             $this->db->where('d.skpd', $id);
@@ -951,22 +986,38 @@
             $this->db->where('a.id_m_user', $id);
         }
         
-        $count = $this->db->get()->result_array(); 
+        $tempdata = $this->db->get()->result_array(); 
+        $rs['pengajuan'] = 0;
+        $rs['diterima'] = 0;
+        $rs['ditolak'] = 0;
+        $rs['batal'] = 0;
 
-        if($count){
-            
-            foreach($count as $c){
-                if($c['status'] == 1){
-                    $rs['pengajuan'] = $c['total'];
-                } else if($c['status'] == 2){
-                    $rs['diterima'] = $c['total'];
-                } else if($c['status'] == 3){
-                    $rs['ditolak'] = $c['total'];
-                } else if($c['status'] == 4){
-                    $rs['batal'] = $c['total'];
+        if($tempdata){
+            foreach($tempdata as $t){
+                if($t['status'] == 1){
+                    $rs['pengajuan']++;
+                } else if($t['status'] == 2){
+                    $rs['diterima']++;
+                } else if($t['status'] == 3){
+                    $rs['ditolak']++;
+                } else if($t['status'] == 4){
+                    $rs['batal']++;
                 }
             }
         }
+        // if($count){
+        //     foreach($count as $c){
+        //         if($c['status'] == 1){
+        //             $rs['pengajuan'] = $c['total'];
+        //         } else if($c['status'] == 2){
+        //             $rs['diterima'] = $c['total'];
+        //         } else if($c['status'] == 3){
+        //             $rs['ditolak'] = $c['total'];
+        //         } else if($c['status'] == 4){
+        //             $rs['batal'] = $c['total'];
+        //         }
+        //     }
+        // }
 
         return $rs;
     }
@@ -978,7 +1029,7 @@
 
         $this->db->trans_begin();
 
-        $this->db->where('id', $id)
+        $this->db->where_in('id', $this->input->post('list_id'))
                 ->update('t_dokumen_pendukung', ['flag_active' => 0]);
         
         $tmp = $this->db->select('*')
@@ -1117,7 +1168,29 @@
         }
 
         $result = $this->db->get()->result_array();
+        if($result){
+            $temp = $result;
+            $result = null;
+            foreach($temp as $t){
+                if(isset($result[$t['nip'].$t['dokumen_pendukung']])){
+                    //jika tanggal kurang dari tanggal "dari_tanggal", maka tanggal di data $t yang baru akan menjadi data "dari_tanggal" yang baru
+                    if(formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']) < formatDateOnly($result[$t['nip'].$t['dokumen_pendukung']]['dari_tanggal'])){
+                        $result[$t['nip'].$t['dokumen_pendukung']]['dari_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                    }
 
+                    //jika tanggal lebih dari tanggal "sampai_tanggal", maka tanggal di data $t yang baru akan menjadi data "sampai_tanggal" yang baru
+                    if(formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']) > formatDateOnly($result[$t['nip'].$t['dokumen_pendukung']]['sampai_tanggal'])){
+                        $result[$t['nip'].$t['dokumen_pendukung']]['sampai_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                    }
+                    $result[$t['nip'].$t['dokumen_pendukung']]['list_id'][] = $t['id'];
+                } else {
+                    $result[$t['nip'].$t['dokumen_pendukung']] = $t;
+                    $result[$t['nip'].$t['dokumen_pendukung']]['list_id'][] = $t['id'];
+                    $result[$t['nip'].$t['dokumen_pendukung']]['dari_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                    $result[$t['nip'].$t['dokumen_pendukung']]['sampai_tanggal'] = formatDateOnly($t['tahun'].'-'.$t['bulan'].'-'.$t['tanggal']);
+                }
+            }
+        }
         $id_count = $id_unitkerja;
         $count = $this->countTotalDataPendukung($id_count, $bulan, $tahun, 1);
         return [$result, $count];
@@ -1136,7 +1209,7 @@
             $data_verif['keterangan_verif'] = $this->input->post('keterangan');
         }
 
-        $this->db->where('id', $id)
+        $this->db->where_in('id', $this->input->post('list_id'))
                 ->update('t_dokumen_pendukung', $data_verif);
 
         $temp = $this->db->select('c.skpd, a.bulan, a.tahun')
