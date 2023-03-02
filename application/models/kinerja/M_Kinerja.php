@@ -341,7 +341,7 @@
     
         $data["target_kuantitas"] = $datapost["edit_target_kuantitas"];
         $data["satuan"] = $datapost["edit_satuan"];
-
+        $data["sasaran_kerja"] = $datapost["edit_sasaran_kerja"];
 
         $this->db->where('id', $id_rencana_kinerja)
                 ->update('t_rencana_kinerja', $data);
