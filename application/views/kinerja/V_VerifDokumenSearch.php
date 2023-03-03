@@ -49,10 +49,10 @@
         openListData(1)
         $('#table_disiplin_kerja_result').dataTable()
 
-        $('#count_pengajuan').html('<?=count($result['pengajuan'])?>')
-        $('#count_diterima').html('<?=count($result['diterima'])?>')
-        $('#count_ditolak').html('<?=count($result['ditolak'])?>')
-        $('#count_batal').html('<?=count($result['batal'])?>')
+        // $('#count_pengajuan').html('<?=count($result['pengajuan'])?>')
+        // $('#count_diterima').html('<?=count($result['diterima'])?>')
+        // $('#count_ditolak').html('<?=count($result['ditolak'])?>')
+        // $('#count_batal').html('<?=count($result['batal'])?>')
     })
 
     function openListData(status){

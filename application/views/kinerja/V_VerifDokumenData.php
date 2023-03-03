@@ -18,10 +18,11 @@
                     <td class="text-left"><?=getNamaPegawaiFull($r)?></td>
                     <td class="text-left"><?=formatNip($r['nip'])?></td>
                     <?php
-                        $bulan = $r['bulan'] < 10 ? '0'.$r['bulan'] : $r['bulan'];
-                        $tanggal = $r['tanggal'] < 10 ? '0'.$r['tanggal'] : $r['tanggal'];
+                        // $bulan = $r['bulan'] < 10 ? '0'.$r['bulan'] : $r['bulan'];
+                        // $tanggal = $r['tanggal'] < 10 ? '0'.$r['tanggal'] : $r['tanggal'];
                     ?>
-                    <td class="text-center"><?= formatDateNamaBulan($r['tahun'].'-'.$bulan.'-'.$tanggal) ?></td>
+                    <!-- <td class="text-center"><?= formatDateNamaBulan($r['tahun'].'-'.$bulan.'-'.$tanggal) ?></td> -->
+                    <td class="text-center"><?= formatDateNamaBulan($r['dari_tanggal']).' - '.formatDateNamaBulan($r['sampai_tanggal']) ?></td>
                     <td class="text-center"><?= formatDateNamaBulanWT($r['created_date']) ?></td>
                     <td class="text-center"><?= ($r['keterangan']) ?></td>
                     <td class="text-center">
@@ -44,7 +45,7 @@
                         <?php if($status == 2 || $status == 3){ ?>
                             <span><strong><?=$r['keterangan_verif']?></strong></span><br>
                             <!-- <span style="font-size: 14px;"><?='(oleh '.$r['nama_verif'].' pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span> -->
-                            <span style="font-size: 14px;"><?='pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
+                            <span style="font-size: 14px;"><?='(pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
                         <?php } else if($status == 1) { ?> 
                             <input class="form-control" id="ket_verif_<?=$r['id']?>" />
                         <?php } else if($status == 4){ ?>
@@ -54,9 +55,9 @@
                     </td>
                     <td class="text-center">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button onclick="verifDokumen(2, '<?=$r['id']?>')" style="display: <?=$status == 1 || $status == 4 ? 'block' : 'none'?>" class="btn_verif_<?=$r['id']?> btn btn-sm btn-success" title="Terima"><i class="fa fa-check"></i></button>
-                            <button onclick="verifDokumen(3, '<?=$r['id']?>')" style="display: <?=$status == 1 || $status == 4 ? 'block' : 'none'?>" class="btn_verif_<?=$r['id']?> btn btn-sm btn-danger" title="Tolak"><i class="fa fa-times"></i></button>
-                            <button onclick="verifDokumen(4, '<?=$r['id']?>')" style="display: <?=$status == 1 || $status == 4 ? 'none' : 'block'?>" class="btn_verif_<?=$r['id']?> btn btn-sm btn-warning" title="Batal"><i class="fa fa-trash"></i></button>
+                            <button data-list_id='<?=json_encode($r['list_id'])?>' onclick="verifDokumen(2, '<?=$r['id']?>')" style="display: <?=$status == 1 || $status == 4 ? 'block' : 'none'?>" class="btn_verif_<?=$r['id']?> btn btn-sm btn-success" title="Terima"><i class="fa fa-check"></i></button>
+                            <button data-list_id='<?=json_encode($r['list_id'])?>' onclick="verifDokumen(3, '<?=$r['id']?>')" style="display: <?=$status == 1 || $status == 4 ? 'block' : 'none'?>" class="btn_verif_<?=$r['id']?> btn btn-sm btn-danger" title="Tolak"><i class="fa fa-times"></i></button>
+                            <button data-list_id='<?=json_encode($r['list_id'])?>' onclick="verifDokumen(4, '<?=$r['id']?>')" style="display: <?=$status == 1 || $status == 4 ? 'none' : 'block'?>" class="btn_verif_<?=$r['id']?> btn btn-sm btn-warning" title="Batal"><i class="fa fa-trash"></i></button>
                             <button disabled style="display: none;" id="btn_loading_<?=$r['id']?>" class="btn btn-sm btn-info"><i class="fa fa-spin fa-spinner"></i></button>
                         </div>
                     </td>
@@ -86,6 +87,7 @@
             url: '<?=base_url("kinerja/C_Kinerja/verifDokumen/")?>'+'/'+id+'/'+status,
             method: 'post',
             data: {
+                list_id : $('.btn_verif_'+id).data('list_id'),
                 keterangan: $('#ket_verif_'+id).val()
             },
             success: function(data){

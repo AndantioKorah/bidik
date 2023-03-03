@@ -20,10 +20,11 @@
                     <td class="text-left"><?=getNamaPegawaiFull($r)?></td>
                     <td class="text-left"><?=formatNip($r['nip'])?></td>
                     <?php
-                        $bulan = $r['bulan'] < 10 ? '0'.$r['bulan'] : $r['bulan'];
-                        $tanggal = $r['tanggal'] < 10 ? '0'.$r['tanggal'] : $r['tanggal'];
+                        // $bulan = $r['bulan'] < 10 ? '0'.$r['bulan'] : $r['bulan'];
+                        // $tanggal = $r['tanggal'] < 10 ? '0'.$r['tanggal'] : $r['tanggal'];
                     ?>
-                    <td class="text-center"><?= formatDateNamaBulan($r['tahun'].'-'.$bulan.'-'.$tanggal) ?></td>
+                    <!-- <td class="text-center"><?= formatDateNamaBulan($r['tahun'].'-'.$bulan.'-'.$tanggal) ?></td> -->
+                    <td class="text-center"><?= formatDateNamaBulan($r['dari_tanggal']).' - '.formatDateNamaBulan($r['sampai_tanggal']) ?></td>
                     <td class="text-center"><?= formatDateNamaBulanWT($r['created_date']) ?></td>
                     <td class="text-center"><?= ($r['keterangan']) ?></td>
                     <td class="text-center">
@@ -44,8 +45,8 @@
                     </td>
                     <?php if($status != 1){ ?>
                         <td class="text-left">
-                        <span style="font-size: 14px;"><?='<strong>'.$r['keterangan_verif'].'</strong><br>(oleh '.$r['nama_verif'].' pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
                         <!-- <span style="font-size: 14px;"><?='<strong>'.$r['keterangan_verif'].'</strong><br>(oleh '.$r['nama_verif'].' pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span> -->
+                        <span style="font-size: 14px;"><?='<strong>'.$r['keterangan_verif'].'</strong><br>(pada '.formatDateNamaBulanWT($r['tanggal_verif']).')'?></span>
                         </td>
                     <?php } ?>
                     <td class="text-center">
@@ -53,7 +54,7 @@
                             <button onclick="deleteDisiplinKerjaByIdUser('<?=$r['id_m_user']?>')" type="button" id="btn_delete_<?=$r['id_m_user']?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
                             <button type="button" disabled style="display: none;" id="btn_loading_<?=$r['id_m_user']?>" class="btn btn-danger btn-sm"><i class="fa fa-spin fa-spinner"></i> Loading....</button> -->
 
-                            <button onclick="deleteDataDisiplinKerjaById('<?=$r['id']?>')" type="button" id="btn_delete_detail_<?=$r['id']?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                            <button data-list_id='<?=json_encode($r['list_id'])?>' onclick="deleteDataDisiplinKerjaById('<?=$r['id']?>')" type="button" id="btn_delete_detail_<?=$r['id']?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
                             <button type="button" disabled style="display: none;" id="btn_loading_detail_<?=$r['id']?>" class="btn btn-danger btn-sm"><i class="fa fa-spin fa-spinner"></i> Loading....</button>
                     </td>
                 </tr>
