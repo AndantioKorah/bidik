@@ -33,7 +33,7 @@
                 <label>Target (Kuantitas)</label>
                 <input type="hidden" autocomplete="off" id="edit_target_kuantitas_awal"  class="form-control form-control-sm" name="edit_target_kuantitas_awal" value="<?=$rencana['target_kuantitas']?>" />
 
-                <input onkeyup=cekTarget() required autocomplete="off" id="edit_target_kuantitas"  class="form-control form-control-sm" name="edit_target_kuantitas" value="<?=$rencana['target_kuantitas']?>" />
+                <input required autocomplete="off" id="edit_target_kuantitas"  class="form-control form-control-sm" name="edit_target_kuantitas" value="<?=$rencana['target_kuantitas']?>" />
             </div>
 
             <div class="col-md-6">
