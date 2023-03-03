@@ -31,7 +31,9 @@
 
             <div class="col-md-4">
                 <label>Target (Kuantitas)</label>
-                <input required autocomplete="off" id="edit_target_kuantitas"  class="form-control form-control-sm" name="edit_target_kuantitas" value="<?=$rencana['target_kuantitas']?>" />
+                <input type="hidden" autocomplete="off" id="edit_target_kuantitas_awal"  class="form-control form-control-sm" name="edit_target_kuantitas_awal" value="<?=$rencana['target_kuantitas']?>" />
+
+                <input onkeyup=cekTarget() required autocomplete="off" id="edit_target_kuantitas"  class="form-control form-control-sm" name="edit_target_kuantitas" value="<?=$rencana['target_kuantitas']?>" />
             </div>
 
             <div class="col-md-6">
@@ -65,6 +67,14 @@
 
             var bulan = $('#edit_bulan_angka').val()
             var tahun = $('#edit_tahun').val()
+            var targetAwal = parseInt($('#edit_target_kuantitas_awal').val());
+            var targetBaru = parseInt($('#edit_target_kuantitas').val());
+
+            if(targetBaru < targetAwal){
+            errortoast('Tidak bisa kurang dari target sebelumnya');
+            $('#edit_target_kuantitas').val(targetAwal);
+            return false;
+            } 
             
             e.preventDefault()
             $.ajax({
