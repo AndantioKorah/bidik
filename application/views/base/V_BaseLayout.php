@@ -620,12 +620,26 @@ $('.datepicker').datepicker({
     autoclose: true
 });
 
+
+function getFirstDayOfMonth(year, month) {
+  return new Date(year, month, 1);
+}
+
+var date = new Date();
+var firstDay = getFirstDayOfMonth(
+  date.getFullYear(),
+  date.getMonth(),
+);
+
   $('.datetimepickerthis').datetimepicker({
     format: 'yyyy-mm-dd hh:ii:ss',
     autoclose: true,
     todayHighlight: true,
-    todayBtn: true
+    todayBtn: true,
+    startDate: firstDay,
+    endDate: new Date()
   })
+  
 
   $('.datetimepickermaxtodaythis').datetimepicker({
     format: 'yyyy-mm-dd hh:ii:ss',
