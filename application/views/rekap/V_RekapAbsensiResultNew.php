@@ -43,6 +43,31 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <?php if(isset($jam_kerja_event)){ ?>
+                        <br>
+                        <span style="font-size: 14px; font-weight: bold;">Jadwal Jam Kerja <?=$jam_kerja_event['nama_jam_kerja']?></span><br>
+                        <span style="font-size: 14px; font-weight: normal;"><?='Berlaku dari '.formatDateNamaBulan($jam_kerja_event['berlaku_dari']).' - '.formatDateNamaBulan($jam_kerja_event['berlaku_sampai'])?></span>
+                        <table style="width: 50%; margin-bottom: 10px;" border=1>
+                            <thead>
+                                <th style="text-align: center; font-size: 14px;">Hari</th>
+                                <th style="text-align: center; font-size: 14px;">Jam Masuk</th>
+                                <th style="text-align: center; font-size: 14px;">Jam Pulang</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-size: 14px; text-align: center;">Senin - Kamis</td>
+                                    <td style="text-align: center; font-size: 14px;"><?=$jam_kerja_event['wfo_masuk']?></td>
+                                    <td style="text-align: center; font-size: 14px;"><?=$jam_kerja_event['wfo_pulang']?></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 14px; text-align: center;">Jumat</td>
+                                    <td style="text-align: center; font-size: 14px;"><?=$jam_kerja_event['wfoj_masuk']?></td>
+                                    <td style="text-align: center; font-size: 14px;"><?=$jam_kerja_event['wfoj_pulang']?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <?php } ?>
                 <?php } ?>
                 </center>
                
