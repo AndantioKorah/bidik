@@ -469,6 +469,7 @@
                             ->where('a.id !=', $this->general_library->getId())
                             ->where('h.role_name', $kepala_pd)
                             ->where('a.flag_active', 1)
+                            ->where('g.flag_active', 1)
                             ->group_by('a.id')
                             ->limit(1)
                             ->get()->row_array();
@@ -485,6 +486,7 @@
                             ->where('a.id !=', $this->general_library->getId())
                             ->where('h.role_name', $atasan)
                             ->where('a.flag_active', 1)
+                            ->where('b.skpd', $pegawai['id_unitkerja'])
                             ->group_by('a.id')
                             ->limit(1)
                             ->get()->row_array();

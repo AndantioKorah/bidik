@@ -782,9 +782,25 @@
         $jam_kerja = $this->db->select('*')
                 ->from('t_jam_kerja')
                 ->where('id_m_jenis_skpd', $jskpd)
+                ->where('flag_event', 0)
                 ->where('flag_active', 1)
                 ->get()->row_array();
         $data['jam_kerja'] = $jam_kerja;
+
+        $jam_kerja_event = $this->db->select('*')
+                ->from('t_jam_kerja')
+                ->where('id_m_jenis_skpd', $jskpd)
+                ->where('(MONTH(berlaku_dari) = '.$data['bulan'].' OR
+                        MONTH(berlaku_sampai) = '.$data['bulan'].')')
+                ->where('(YEAR(berlaku_dari) = '.$data['tahun'].' OR
+                        YEAR(berlaku_sampai) = '.$data['tahun'].')')
+                ->where('flag_event', 1)
+                ->where('flag_active', 1)
+                ->get()->row_array();
+
+        if($jam_kerja_event){
+            $data['jam_kerja_event'] = $jam_kerja_event;
+        }
 
         $hari_libur = $this->db->select('*')
                 ->from('t_hari_libur')
@@ -846,9 +862,27 @@
             if(getNamaHari($lh) != 'Jumat' && getNamaHari($lh) != 'Sabtu' && getNamaHari($lh) != 'Minggu'){
                 $format_hari[$lh]['jam_masuk'] = $jam_kerja['wfo_masuk'];
                 $format_hari[$lh]['jam_pulang'] = $jam_kerja['wfo_pulang'];
+
+                if($jam_kerja_event){
+                    if((($lh) >= ($jam_kerja_event['berlaku_dari'])) &&
+                        ($lh) <= ($jam_kerja_event['berlaku_sampai'])){
+
+                        $format_hari[$lh]['jam_masuk'] = $jam_kerja_event['wfo_masuk'];
+                        $format_hari[$lh]['jam_pulang'] = $jam_kerja_event['wfo_pulang'];
+                    }
+                }
             } else if(getNamaHari($lh) == 'Jumat'){
                 $format_hari[$lh]['jam_masuk'] = $jam_kerja['wfoj_masuk'];
                 $format_hari[$lh]['jam_pulang'] = $jam_kerja['wfoj_pulang'];
+
+                if($jam_kerja_event){
+                    if((($lh) >= ($jam_kerja_event['berlaku_dari'])) &&
+                        ($lh) <= ($jam_kerja_event['berlaku_sampai'])){
+
+                        $format_hari[$lh]['jam_masuk'] = $jam_kerja_event['wfo_masuk'];
+                        $format_hari[$lh]['jam_pulang'] = $jam_kerja_event['wfo_pulang'];
+                    }
+                }
             } 
             // $i++;
         }
