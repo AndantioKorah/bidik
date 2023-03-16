@@ -65,8 +65,9 @@
     <div class="row">
     <div class="col">
     <label >Target Kuantitas</label>
-      <input required type="text" class="form-control" name="target_kuantitas" id="target_kuantitas" autocomplete="off">
+      <input onkeyup="cekKuantitas()" required type="number" class="form-control" name="target_kuantitas" id="target_kuantitas" autocomplete="off">
     </div>
+
     <div class="col">
     <label >Satuan</label>
       <input required type="text" class="form-control" name="satuan" id="satuan" autocomplete="off" list="sat" >
@@ -196,6 +197,14 @@
     })
   }
 
+
+  function cekKuantitas(){
+        var kuantitas = $('#target_kuantitas').val()
+        if(kuantitas == 0){
+         errortoast('Target Kuantitas tidak boleh 0')
+         $('#target_kuantitas').val('')
+        }
+      }
 
 </script>
 
