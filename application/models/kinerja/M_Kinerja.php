@@ -66,7 +66,7 @@
               if($this->upload->do_upload('file')){
                
                $data = $this->upload->data(); 
-                 //    kompress
+            //         kompress
             //    if($data['file_type'] == "image/png" || $data['file_type'] == "image/jpeg") {
             //    $insert['name'] = $data['file_name'];
             //    $config['image_library'] = 'gd2';
@@ -98,8 +98,8 @@
             //                 echo $this->image_lib->display_errors();
             //             }
             //     $this->image_lib->clear();
-            // tutup kompress
             // }
+            // tutup kompress
             
               }
             }

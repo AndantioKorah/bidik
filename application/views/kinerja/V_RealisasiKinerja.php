@@ -93,7 +93,7 @@
 
    <div class="form-group">
     <label>Realisasi Target (Kuantitas)</label>
-    <input  class="form-control" type="number" autocomplete="off" id="target_kuantitas" name="target_kuantitas" required/>
+    <input onkeyup="cekKuantitas()"  class="form-control" type="number" autocomplete="off" id="target_kuantitas" name="target_kuantitas" required/>
   </div>
   
   <div class="form-group">
@@ -539,4 +539,12 @@
         // Set value of the file input to our new files list
         e.target.files = dataTransfer.files;
     });
+
+    function cekKuantitas(){
+        var kuantitas = $('#target_kuantitas').val()
+        if(kuantitas == 0){
+         errortoast('Target Kuantitas tidak boleh 0')
+         $('#target_kuantitas').val('')
+        }
+      }
 </script>
