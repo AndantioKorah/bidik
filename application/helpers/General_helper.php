@@ -14,6 +14,24 @@ function render($pageContent, $parent_active, $active, $data)
     $CI->load->view('base/V_BaseLayout', $data);
 }
 
+function base64ToFile($base64_string, $output_file) {
+    $ifp = fopen( $output_file, 'wb' ); 
+    $data = explode(',', $base64_string );
+    fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+    fclose( $ifp );
+    return $output_file; 
+}
+
+function fileToBase64($filename){
+    if(file_exists($filename)){
+        $type = pathinfo($filename, PATHINFO_EXTENSION);
+        $data = file_get_contents($filename);
+        $base64 = 'data:file/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
+    } 
+    return null;
+}
+
 function formatNip($nip){
     $str = strlen($nip);
     $formatted_nip = '';

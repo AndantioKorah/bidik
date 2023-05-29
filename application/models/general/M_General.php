@@ -59,6 +59,27 @@
             return $this->db->get()->result_array(); 
         }
 
+        public function authWs($data){
+            $rs['code'] = 0;
+            $rs['message'] = 1;
+
+            $user = $this->db->select('*, a.nama as nama_user')
+            ->from('m_user a')
+            ->where('a.username', $data['username'])
+            ->where('a.flag_active', 1)
+            ->get()->row_array();
+            $data['password'] = $this->general_library->encrypt($data['username'], $data['password']);
+            if($user){
+                if($user['password'] == $data['password']){
+                    return ['code' => 0, 'message' => ""];
+                } else {
+                    return ['code' => 1, 'message' => "Password Salah"];
+                }
+            } else {
+                return ['code' => 1, 'message' => 'User tidak ditemukan'];
+            }
+        }
+
         public function authenticate($username, $password)
         {
             $this->db->select('*, a.nama as nama_user')
