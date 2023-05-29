@@ -44,7 +44,7 @@ class Api extends RestController {
                 $pathFile = $this->input->post('filename');
                 $rs = fileToBase64($pathFile);
                 $this->responseMessage['status'] = true;
-                $this->responseMessage['code'] = 201;
+                $this->responseMessage['code'] = 200;
                 $this->responseMessage['data'] = $rs;
             } else {
                 $this->responseMessage['status'] = false;
