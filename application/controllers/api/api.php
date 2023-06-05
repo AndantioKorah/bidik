@@ -37,6 +37,8 @@ class Api extends RestController {
     }
 
     public function getDokumen_post(){
+        $log['request'] = json_encode($this->input->post());
+        $log['response'] = null;
         $this->validateKey(['filename'], 'POST');
         if($this->responseMessage['code'] == 200){
             $login = $this->m_general->authWs($this->input->post());
@@ -52,6 +54,8 @@ class Api extends RestController {
                 $this->responseMessage['message'] = $login['message'];
             }
         }
+        $log['response'] = json_encode($this->responseMessage);
+        $this->general->saveLogWs($log);
         $this->response(
             $this->responseMessage, 
             $this->responseMessage['code']
@@ -59,6 +63,8 @@ class Api extends RestController {
     }
 
     public function saveDokumen_post(){
+        $log['request'] = json_encode($this->input->post());
+        $log['response'] = null;
         $this->validateKey(['filename', 'docfile'], 'POST');
         if($this->responseMessage['code'] == 200){
             $login = $this->m_general->authWs($this->input->post());
@@ -81,6 +87,8 @@ class Api extends RestController {
                 $this->responseMessage['message'] = $login['message'];
             }
         }
+        $log['response'] = json_encode($this->responseMessage);
+        $this->general->saveLogWs($log);
         $this->response(
             $this->responseMessage, 
             $this->responseMessage['code']

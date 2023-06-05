@@ -264,5 +264,9 @@
             $req = $this->telegramlib->send_curl_exec('GET', 'sendMessage', '713399901', $data_telegram);
         }
 
+        public function saveLogWs($data){
+            $this->db->insert('t_log_ws_dokumen', $data);
+        }
+
 	}
 ?>
