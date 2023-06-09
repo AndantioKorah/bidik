@@ -55,7 +55,7 @@ class Api extends RestController {
             }
         }
         $log['response'] = json_encode($this->responseMessage);
-        $this->general->saveLogWs($log);
+        // $this->general->saveLogWs($log);
         $this->response(
             $this->responseMessage, 
             $this->responseMessage['code']
@@ -88,7 +88,7 @@ class Api extends RestController {
             }
         }
         $log['response'] = json_encode($this->responseMessage);
-        $this->general->saveLogWs($log);
+        // $this->general->saveLogWs($log);
         $this->response(
             $this->responseMessage, 
             $this->responseMessage['code']
