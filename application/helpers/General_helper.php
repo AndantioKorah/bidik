@@ -14,9 +14,15 @@ function render($pageContent, $parent_active, $active, $data)
     $CI->load->view('base/V_BaseLayout', $data);
 }
 
+function bytesToFile($base64_string, $path){
+    file_put_contents($path, base64_decode($base64_string[0]));
+    return true;
+}
+
 function base64ToFile($base64_string, $output_file) {
+    $str_file = str_replace(" ", "+", $base64_string);
     $ifp = fopen( $output_file, 'wb' ); 
-    $data = explode(',', $base64_string );
+    $data = explode(',', $str_file );
     fwrite( $ifp, base64_decode( $data[ 1 ] ) );
     fclose( $ifp );
     return $output_file; 

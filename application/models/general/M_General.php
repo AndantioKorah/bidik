@@ -68,7 +68,7 @@
             ->where('a.username', $data['username'])
             ->where('a.flag_active', 1)
             ->get()->row_array();
-            $data['password'] = $this->general_library->encrypt($data['username'], $data['password']);
+            // $data['password'] = $this->general_library->encrypt($data['username'], $data['password']);
             if($user){
                 if($user['password'] == $data['password']){
                     return ['code' => 0, 'message' => ""];
