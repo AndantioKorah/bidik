@@ -54,8 +54,8 @@ class Api extends RestController {
                 $this->responseMessage['message'] = $login['message'];
             }
         }
-        $log['response'] = json_encode($this->responseMessage);
-        // $this->general->saveLogWs($log);
+        // $log['response'] = json_encode($this->responseMessage);
+        // $this->m_general->saveLogWs($log);
         $this->response(
             $this->responseMessage, 
             $this->responseMessage['code']
@@ -80,6 +80,7 @@ class Api extends RestController {
                 } else {
                     $this->responseMessage['status'] = false;
                     $this->responseMessage['code'] = 500;
+                    $this->responseMessage['data'] = json_encode($upload);
                     $this->responseMessage['message'] = "File gagal upload";    
                 }
             } else {
