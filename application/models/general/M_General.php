@@ -268,11 +268,11 @@
             $this->db->insert('t_log_ws_dokumen', $data);
         }
 
-        public function getNomorHpByNip($nip){
+        public function getUserSiladenByNoHp($nohp){
             return $this->db->select('*')
                             ->from('manado.users')
-                            ->where('status', 1)
-                            ->where('username', $nip)
+                            ->where('active', 1)
+                            ->where('nomorhp', $nohp)
                             ->get()->row_array();
         }
 

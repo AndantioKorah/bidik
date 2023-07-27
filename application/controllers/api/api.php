@@ -41,9 +41,9 @@ class Api extends RestController {
     public function getUserSiladen_post(){
         $log['request'] = json_encode($this->input->post());
         $log['response'] = null;
-        $this->validateKey(['nip'], 'POST');
+        $this->validateKey(['nohp'], 'POST');
         if($this->responseMessage['code'] == 200){
-            $rs = $this->m_general->getNomorHpByNip($this->input->post('nip'));
+            $rs = $this->m_general->getUserSiladenByNoHp($this->input->post('nohp'));
             if($rs){
                 $this->responseMessage['status'] = true;
                 $this->responseMessage['code'] = 200;
