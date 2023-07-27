@@ -28,3 +28,6 @@ $route['rekapitulasi/tpp'] = 'rekap/C_Rekap/rekapTpp';
 $route['master/tpp'] = 'master/C_Master/tpp';
 
 $route['dashboard'] = 'dashboard/C_Dashboard/dashboard';  
+
+//api
+$route['api/siladen/user'] = 'api/api/getUserSiladen';

@@ -13,8 +13,10 @@ class Api extends RestController {
         $this->responseMessage = ['code' => 200, 'status' => true, 'message' => "", 'data' => null];
     }
 
-    public function validateKey($arr, $method){
-        array_push($arr, 'username', 'password');
+    public function validateKey($arr, $method, $flag_siladen = 0){
+        if($flag_siladen != 0){
+            array_push($arr, 'username', 'password');
+        }
         if($method == 'POST'){
             foreach($arr as $a){
                 if(!$this->input->post($a)){
@@ -34,6 +36,31 @@ class Api extends RestController {
                 }
             }
         }
+    }
+
+    public function getUserSiladen_post(){
+        $log['request'] = json_encode($this->input->post());
+        $log['response'] = null;
+        $this->validateKey(['nip'], 'POST');
+        if($this->responseMessage['code'] == 200){
+            $rs = $this->m_general->getNomorHpByNip($this->input->post('nip'));
+            if($rs){
+                $this->responseMessage['status'] = true;
+                $this->responseMessage['code'] = 200;
+                $this->responseMessage['data'] = $rs;
+            } else {
+                $this->responseMessage['status'] = false;
+                $this->responseMessage['code'] = 404;
+                $this->responseMessage['message'] = "Data Tidak Ditemukan";
+                $this->responseMessage['data'] = null;
+            }
+        }
+        // $log['response'] = json_encode($this->responseMessage);
+        // $this->m_general->saveLogWs($log);
+        $this->response(
+            $this->responseMessage, 
+            $this->responseMessage['code']
+        );
     }
 
     public function getDokumen_post(){

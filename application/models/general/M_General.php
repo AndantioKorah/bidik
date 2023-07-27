@@ -268,5 +268,13 @@
             $this->db->insert('t_log_ws_dokumen', $data);
         }
 
+        public function getNomorHpByNip($nip){
+            return $this->db->select('*')
+                            ->from('manado.users')
+                            ->where('status', 1)
+                            ->where('username', $nip)
+                            ->get()->row_array();
+        }
+
 	}
 ?>
