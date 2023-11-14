@@ -126,7 +126,6 @@ class Api extends RestController {
 
 
     public function deleteDokumen_post(){
-        
         $log['request'] = json_encode($this->input->post());
         $log['response'] = null;
         $this->validateKey(['filename'], 'POST');
@@ -138,6 +137,30 @@ class Api extends RestController {
                 $this->responseMessage['status'] = true;
                 $this->responseMessage['code'] = 201;
                 $this->responseMessage['message'] = "File berhasil dihapus";
+            } else {
+                $this->responseMessage['status'] = false;
+                $this->responseMessage['code'] = 404;
+                $this->responseMessage['message'] = $login['message'];
+            }
+        }
+        $log['response'] = json_encode($this->responseMessage);
+        $this->response(
+            $this->responseMessage, 
+            $this->responseMessage['code']
+        );
+    }
+
+    public function getNoHpAll_post(){
+        $log['request'] = json_encode($this->input->post());
+        $log['response'] = null;
+        $this->validateKey([], 'POST');
+        if($this->responseMessage['code'] == 200){
+            $login = $this->m_general->authWs($this->input->post());
+            if($login['code'] == 0){
+                $result = $this->m_general->getNoHpAll();
+                $this->responseMessage['status'] = true;
+                $this->responseMessage['code'] = 404;
+                $this->responseMessage['message'] = $result;
             } else {
                 $this->responseMessage['status'] = false;
                 $this->responseMessage['code'] = 404;

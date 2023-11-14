@@ -276,5 +276,12 @@
                             ->get()->row_array();
         }
 
+        public function getNoHpAll(){
+            return $this->db->select('*')
+                            ->from('manado.users')
+                            ->where('active', 1)
+                            ->get()->result_array();
+        }
+
 	}
 ?>
