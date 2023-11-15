@@ -159,7 +159,7 @@ class Api extends RestController {
             if($login['code'] == 0){
                 $result = $this->m_general->getNoHpAll();
                 $this->responseMessage['status'] = true;
-                $this->responseMessage['code'] = 404;
+                $this->responseMessage['code'] = 200;
                 $this->responseMessage['message'] = $result;
             } else {
                 $this->responseMessage['status'] = false;
