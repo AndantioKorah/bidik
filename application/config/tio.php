@@ -32,3 +32,6 @@ $route['dashboard'] = 'dashboard/C_Dashboard/dashboard';
 //api
 $route['api/siladen/user'] = 'api/api/getUserSiladen';
 $route['api/siladen/hp/getAll'] = 'api/api/getNoHpAll';
+
+//ws tte
+$route['ws/tte'] = 'api/C_Tte/fetch';
